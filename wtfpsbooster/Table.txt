@@ -1,0 +1,16 @@
+﻿CPU ID		Associated value (n)		Formula (2^n-1)		Affinity in Hex (h)
+CPU0				1						1						1
+CPU1				2						3						3
+CPU2				4						7						7
+CPU3				8						15						F
+CPU4				16						31						1F
+CPU5				32						63						3F
+CPU6				64						127						7F
+CPU7				128						255						FF
+
+cpu0 = 1
+cpu1 = 2^1
+cpu2 = 2^2
+cpu3 = 2^3
+cpu4 = 2^4 
+cpu5 = 2^5
