@@ -6,7 +6,7 @@ download a GUI version as a Pre-Release program.
 
 This code is public for now, but the final code will
 not be public and will be protected by Gaijin Entertainment
-under their TOS. ( https://warthunder.com/us/support/termsofuse/ )
+under their TOS. ( <a href="https://warthunder.com/us/support/termsofuse/">https://warthunder.com/us/support/termsofuse/</a> )
 
 This code is protected under
 GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007
