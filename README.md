@@ -11,6 +11,9 @@ under their TOS. ( https://warthunder.com/us/support/termsofuse/ )
 This code is protected under
 GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007
 
+# Download
+https://github.com/JoeKoen/War-Thunder-FPS-Booster/releases
+
 # Current State
 The current state is pre-release.
 This program works as is.
