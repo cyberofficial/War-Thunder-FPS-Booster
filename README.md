@@ -12,7 +12,7 @@ This code is protected under
 GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007
 
 # Download
-https://github.com/JoeKoen/War-Thunder-FPS-Booster/releases
+<a href="https://github.com/JoeKoen/War-Thunder-FPS-Booster/releases">https://github.com/JoeKoen/War-Thunder-FPS-Booster/releases</a>
 
 # Current State
 The current state is pre-release.
