@@ -42,7 +42,7 @@ Public Class Form1
         'singlecoreval.Text = "Core Selected: " & fss.Value
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles bbtn.Click
         Dim total As Integer
         total = 0
 
@@ -162,9 +162,11 @@ Public Class Form1
         ElseIf aces1.Count > 0 Then
             wtstatus.Text = "War Thunder Running"
             wtstatus.ForeColor = Color.Green
+            bbtn.Enabled = True
         Else
             wtstatus.Text = "Not Running"
             wtstatus.ForeColor = Color.Red
+            bbtn.Enabled = False
         End If
     End Sub
 End Class

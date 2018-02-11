@@ -28,7 +28,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.aboost = New System.Windows.Forms.CheckBox()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.bbtn = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -54,7 +54,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.aboost)
         Me.GroupBox1.Controls.Add(Me.Button2)
-        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.bbtn)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
@@ -104,14 +104,15 @@ Partial Class Form1
         Me.Button2.Text = "Restore CPU"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button1
+        'bbtn
         '
-        Me.Button1.Location = New System.Drawing.Point(6, 19)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Boost"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.bbtn.Enabled = False
+        Me.bbtn.Location = New System.Drawing.Point(6, 19)
+        Me.bbtn.Name = "bbtn"
+        Me.bbtn.Size = New System.Drawing.Size(75, 23)
+        Me.bbtn.TabIndex = 3
+        Me.bbtn.Text = "Boost"
+        Me.bbtn.UseVisualStyleBackColor = True
         '
         'TabControl1
         '
@@ -244,7 +245,7 @@ Partial Class Form1
     End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents bbtn As System.Windows.Forms.Button
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
