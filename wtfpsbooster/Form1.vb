@@ -67,6 +67,12 @@ Public Class Form1
             If proc.ToString.Contains("aces") Then
                 proc.ProcessorAffinity = New IntPtr(n - 1)
             End If
+            If proc.ToString.Contains("discord") Then
+                proc.ProcessorAffinity = New IntPtr(n - 1)
+            End If
+            If proc.ToString.Contains("ts3client_win64") Then
+                proc.ProcessorAffinity = New IntPtr(n - 1)
+            End If
             On Error Resume Next
         Next
 
