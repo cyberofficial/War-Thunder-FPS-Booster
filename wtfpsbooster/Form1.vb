@@ -1,184 +1,180 @@
 ﻿Imports System.Threading
 Public Class Form1
-
     Dim corecount As Integer
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-    End Sub
-
+    Dim status As String
+    Dim total As Integer
+    Dim cores As Integer
+    Dim n As Integer
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         corecount = 0
-
-        'Sider Counter
-        'fss.Maximum = System.Environment.ProcessorCount.ToString - 1
-        '------------------
-
-
-        'Checkbox SingleCore List
-        'For Each proc In Process.GetProcesses
-        '    If Not scpl.Items.Contains(proc.ProcessName) Then
-        '        scpl.Items.Add(proc.ProcessName)
-        '    End If
-
-        '    On Error Resume Next
-        'Next
-        '------------------
-
-
-        'Corecounter multicore checked list
         While corecount <= System.Environment.ProcessorCount.ToString - 1
             corecount = corecount + 1
             cs.Items.Add(corecount - 1)
         End While
-
         TabControl1.TabPages.Remove(TabPage2)
-        '------------------
-
-
-
     End Sub
 
-    Private Sub ForceSingleSlider_ValueChanged(sender As Object, e As EventArgs)
-        'singlecoreval.Text = "Core Selected: " & fss.Value
-    End Sub
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles bbtn.Click
-        Dim total As Integer
+    Private Sub BoostWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BoostWorker.DoWork
         total = 0
-
-        'For Each item In cs.CheckedItems
-        '    total = (2 ^ item.ToString) + total
-        'Next
-
-        'set each process to first core
         For Each proc In Process.GetProcesses
-            proc.ProcessorAffinity = New IntPtr(1)
+            Try
+                proc.ProcessorAffinity = New IntPtr(1)
+                BoostWorker.ReportProgress(1, "Stage 1 of 2" & vbNewLine & "Please dont exit the app.")
+            Catch ex As Exception
 
-            On Error Resume Next
+            End Try
+
         Next
-
-
-        'set aces to use all the other cores
-        Dim cores As Integer
-        Dim n As Integer
         cores = System.Environment.ProcessorCount.ToString
         n = 2 ^ cores - 1
         For Each proc In Process.GetProcesses
-            If proc.ToString.Contains("aces") Then
-                proc.ProcessorAffinity = New IntPtr(n - 1)
-            End If
-            If proc.ToString.Contains("Discord") Then
-                proc.ProcessorAffinity = New IntPtr(n - 1)
-            End If
-            If proc.ToString.Contains("ts3client_win64") Then
-                proc.ProcessorAffinity = New IntPtr(n - 1)
-            End If
-            If proc.ToString.Contains("GameOverlayUI") Then
-                proc.ProcessorAffinity = New IntPtr(n - 1)
-            End If
-            If proc.ToString.Contains("Steam") Then
-                proc.ProcessorAffinity = New IntPtr(n - 1)
-            End If
-            If proc.ToString.Contains("SteamService") Then
-                proc.ProcessorAffinity = New IntPtr(n - 1)
-            End If
-            If proc.ToString.Contains("steamwebhelper") Then
-                proc.ProcessorAffinity = New IntPtr(n - 1)
-            End If
-            On Error Resume Next
+            Try
+                BoostWorker.ReportProgress(67, "Stage 2 of 2" & vbNewLine & "Please dont exit the app.")
+                Thread.Sleep(15)
+                If proc.ToString.Contains("aces") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("Discord") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("ts3client_win64") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("GameOverlayUI") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("Steam") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("SteamService") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("steamwebhelper") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("Dxtory") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("Dxtory64") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+            Catch ex As Exception
+
+            End Try
+
         Next
 
-        'Dim sc As Integer
-        'sc = 2 ^ fss.Value
-
-        'If fss.Value = 0 Then
-        '    For Each proc In Process.GetProcesses
-        '        proc.ProcessorAffinity = New IntPtr(1)
-
-        '        On Error Resume Next
-        '    Next
-        'Else
-        '    For Each proc In Process.GetProcesses
-        '        proc.ProcessorAffinity = New IntPtr(sc)
-
-        '        On Error Resume Next
-        '    Next
-        'End If
     End Sub
 
+    Private Sub BoostWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BoostWorker.ProgressChanged
+        Label1.Text = DirectCast(e.UserState, String)
+
+    End Sub
+
+    Private Sub BoostWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BoostWorker.RunWorkerCompleted
+        Label1.Text = "War Thunder Status: Boosted" & vbNewLine & "Restore before closing."
+        Me.Enabled = True
+    End Sub
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles bbtn.Click
+        Me.Enabled = False
+        bbtn.Enabled = 0
+        Try
+            BoostWorker.WorkerReportsProgress = True
+            BoostWorker.RunWorkerAsync()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub RestoreWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RestoreWorker.DoWork
+        For Each proc In Process.GetProcesses
+            Try
+                proc.ProcessorAffinity = New IntPtr(n)
+                RestoreWorker.ReportProgress(1, "Restoring Processes to Normal...")
+            Catch ex As Exception
+
+            End Try
+        Next
+    End Sub
+
+    Private Sub RestoreWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles RestoreWorker.ProgressChanged
+        Label1.Text = e.UserState.ToString
+    End Sub
+
+    Private Sub RestoreWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles RestoreWorker.RunWorkerCompleted
+        Label1.Text = "War Thunder Status: Normal"
+        bbtn.Enabled = True
+        Me.Enabled = True
+    End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim cores As Integer
-        Dim n As Integer
-        cores = System.Environment.ProcessorCount.ToString
-        n = 2 ^ cores - 1
-        For Each proc In Process.GetProcesses
-            proc.ProcessorAffinity = New IntPtr(n)
+        Me.Enabled = False
+        Try
+            cores = System.Environment.ProcessorCount.ToString
+            n = 2 ^ cores - 1
+            RestoreWorker.RunWorkerAsync()
 
-            On Error Resume Next
-        Next
+        Catch ex As Exception
 
+        End Try
     End Sub
-
-    Private Sub rfpl1_Click(sender As Object, e As EventArgs)
-        'scpl.Items.Clear()
-        'For Each proc In Process.GetProcesses
-        '    If Not scpl.Items.Contains(proc.ProcessName) Then
-        '        scpl.Items.Add(proc.ProcessName)
-        '    End If
-
-        '    On Error Resume Next
-        'Next
-    End Sub
-
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles rfspcl.Click
         pclist.Items.Clear()
         For Each proc In Process.GetProcesses
-            If Not pclist.Items.Contains(proc.ProcessName) Then
-                pclist.Items.Add(proc.ProcessName)
-            End If
+            Try
+                If Not pclist.Items.Contains(proc.ProcessName) Then
+                    pclist.Items.Add(proc.ProcessName)
+                End If
+            Catch ex As Exception
 
-            On Error Resume Next
+            End Try
         Next
     End Sub
-
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles fcp2.Click
         Dim total As Integer
         total = 0
-
         For Each item In cs.CheckedItems
-            total = (2 ^ item.ToString) + total
-        Next
+            Try
+                total = (2 ^ item.ToString) + total
+            Catch ex As Exception
 
+            End Try
+
+        Next
         For Each item In pclist.CheckedItems
-            For Each proc In Process.GetProcesses
-                If proc.ToString.Contains(item) Then
-                    proc.ProcessorAffinity = New IntPtr(total)
-                End If
-                On Error Resume Next
-            Next
-            On Error Resume Next
+            Try
+                For Each proc In Process.GetProcesses
+                    Try
+                        If proc.ToString.Contains(item) Then
+                            proc.ProcessorAffinity = New IntPtr(total)
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                Next
+            Catch ex As Exception
+
+            End Try
         Next
-
     End Sub
-
     Dim launcher1() As Process
     Dim aces1() As Process
 
-    Private Sub tauto_Tick(sender As Object, e As EventArgs) Handles tauto.Tick
-
+    Private Sub Tauto_Tick(sender As Object, e As EventArgs) Handles tauto.Tick
         launcher1 = Process.GetProcessesByName("launcher")
         aces1 = Process.GetProcessesByName("aces")
         If launcher1.Count > 0 Then
-            wtstatus.Text = "Launcher Running"
+            wtstatus.Text = "x Launcher"
             wtstatus.ForeColor = Color.Yellow
+            'tauto.Interval = 2000
         ElseIf aces1.Count > 0 Then
-            wtstatus.Text = "War Thunder Running"
+            wtstatus.Text = "✓ WT is Running"
             wtstatus.ForeColor = Color.Green
             bbtn.Enabled = True
+            'tauto.Interval = 10000
         Else
-            wtstatus.Text = "Not Running"
+            wtstatus.Text = "x Not Running"
             wtstatus.ForeColor = Color.Red
             bbtn.Enabled = False
+            'tauto.Interval = 1000
         End If
     End Sub
 End Class

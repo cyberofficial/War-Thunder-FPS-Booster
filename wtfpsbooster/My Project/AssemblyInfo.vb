@@ -13,14 +13,14 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("Warthunder FPS Booster")> 
 <Assembly: AssemblyDescription("Boost Your warthunder FPS")> 
 <Assembly: AssemblyCompany("Cyber Apps")> 
-<Assembly: AssemblyProduct("Control My Cores")> 
-<Assembly: AssemblyCopyright("Copyright © 2012-2018")> 
+<Assembly: AssemblyProduct("Control My Cores")>
+<Assembly: AssemblyCopyright("Copyright © 2016-2019")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)> 
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("7392bb71-7b9a-40da-834a-f377d9ab42be")> 
+<Assembly: Guid("7392bb71-7b9a-40da-834a-f377d9ab42be")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -33,7 +33,7 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.0.0.1")> 
-<Assembly: AssemblyFileVersion("0.0.0.1")> 
+<Assembly: AssemblyVersion("1.83.0.144")>
+<Assembly: AssemblyFileVersion("1.83.0.144")>
 
 <Assembly: NeutralResourcesLanguageAttribute("en-US")> 

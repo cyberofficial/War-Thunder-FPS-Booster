@@ -5,7 +5,10 @@ C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\bin\Release
 C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\bin\Release\wtfpsbooster.xml
 C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.Form1.resources
 C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.Resources.resources
-C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.vbproj.GenerateResource.Cache
+C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.vbproj.GenerateResource.cache
+C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.vbproj.CoreCompileInputs.cache
 C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.exe
 C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.xml
 C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.pdb
+C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.splash.resources
+C:\Users\kille\Documents\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\Release\wtfpsbooster.vbprojResolveAssemblyReference.cache
