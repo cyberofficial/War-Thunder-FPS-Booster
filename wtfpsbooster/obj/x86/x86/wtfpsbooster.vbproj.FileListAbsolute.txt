@@ -1,0 +1,12 @@
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\bin\x86\x86\wtfpsbooster.exe.config
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\bin\x86\x86\wtfpsbooster.exe
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\bin\x86\x86\wtfpsbooster.pdb
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\bin\x86\x86\wtfpsbooster.xml
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.Form1.resources
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.Resources.resources
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.splash.resources
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.vbproj.GenerateResource.cache
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.vbproj.CoreCompileInputs.cache
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.exe
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.xml
+Z:\OneDrive\Main_PC\GitHub\War-Thunder-FPS-Booster\wtfpsbooster\obj\x86\x86\wtfpsbooster.pdb
