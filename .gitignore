@@ -1,0 +1,7 @@
+.vs\
+wtfpsbooster\*
+.vs/wtfpsbooster/v16/Server/sqlite3/db.lock
+.vs/wtfpsbooster/v16/Server/sqlite3/storage.ide
+wtfpsbooster/obj/x86/Release/wtfpsbooster.vbprojAssemblyReference.cache
+.vs/wtfpsbooster/v16/Server/sqlite3/storage.ide-wal
+.vs/wtfpsbooster/v16/Server/sqlite3/storage.ide-shm

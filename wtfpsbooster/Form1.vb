@@ -5,6 +5,7 @@ Public Class Form1
     Dim total As Integer
     Dim cores As Integer
     Dim n As Integer
+    Dim EAC_on
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
@@ -162,16 +163,20 @@ Public Class Form1
         launcher1 = Process.GetProcessesByName("launcher")
         aces1 = Process.GetProcessesByName("aces")
         If launcher1.Count > 0 Then
-            wtstatus.Text = "x Launcher"
-            wtstatus.ForeColor = Color.Yellow
-            'tauto.Interval = 2000
-        ElseIf aces1.Count > 0 Then
-            wtstatus.Text = "✓ WT is Running"
+            wtstatus.Text = "✓ Launcher"
+            EAC_on = "no"
             wtstatus.ForeColor = Color.Green
             bbtn.Enabled = True
+            'tauto.Interval = 2000
+        ElseIf aces1.Count > 0 Then
+            wtstatus.Text = "x WT is Running"
+            EAC_on = "yes"
+            wtstatus.ForeColor = Color.Red
+            bbtn.Enabled = False
             'tauto.Interval = 10000
         Else
             wtstatus.Text = "x Not Running"
+            EAC_on = "no"
             wtstatus.ForeColor = Color.Red
             bbtn.Enabled = False
             'tauto.Interval = 1000
