@@ -5,7 +5,10 @@ Public Class Form1
     Dim total As Integer
     Dim cores As Integer
     Dim n As Integer
-    Dim EAC_on
+    Dim EAC_on As Boolean = False
+    Dim launcher1() As Process
+    Dim aces1() As Process
+    Dim eac() As Process
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
@@ -17,6 +20,7 @@ Public Class Form1
 
     Private Sub BoostWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BoostWorker.DoWork
         total = 0
+        EAC_on = True
         For Each proc In Process.GetProcesses
             Try
                 proc.ProcessorAffinity = New IntPtr(1)
@@ -57,6 +61,21 @@ Public Class Form1
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
                 If proc.ToString.Contains("Dxtory64") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("launcher") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("EasyAntiCheat") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("wtfpsbooster") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("wtfpsbooster_64bit") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("wtfpsbooster_32bit") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
             Catch ex As Exception
@@ -156,29 +175,36 @@ Public Class Form1
             End Try
         Next
     End Sub
-    Dim launcher1() As Process
-    Dim aces1() As Process
 
     Private Sub Tauto_Tick(sender As Object, e As EventArgs) Handles tauto.Tick
         launcher1 = Process.GetProcessesByName("launcher")
         aces1 = Process.GetProcessesByName("aces")
+        eac = Process.GetProcessesByName("EasyAntiCheat")
         If launcher1.Count > 0 Then
+            EAC_on = False
             wtstatus.Text = "✓ Launcher"
-            EAC_on = "no"
             wtstatus.ForeColor = Color.Green
-            bbtn.Enabled = True
+            'bbtn.Enabled = True
             'tauto.Interval = 2000
         ElseIf aces1.Count > 0 Then
             wtstatus.Text = "x WT is Running"
-            EAC_on = "yes"
             wtstatus.ForeColor = Color.Red
-            bbtn.Enabled = False
+            If eac.Count > 0 Then
+                If EAC_on = False Then
+                    Try
+                        BoostWorker.WorkerReportsProgress = True
+                        BoostWorker.RunWorkerAsync()
+                    Catch ex As Exception
+
+                    End Try
+                End If
+            End If
+            'bbtn.Enabled = False
             'tauto.Interval = 10000
         Else
             wtstatus.Text = "x Not Running"
-            EAC_on = "no"
             wtstatus.ForeColor = Color.Red
-            bbtn.Enabled = False
+            'bbtn.Enabled = False
             'tauto.Interval = 1000
         End If
     End Sub

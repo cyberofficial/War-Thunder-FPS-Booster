@@ -63,7 +63,7 @@ Partial Class Form1
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(546, 203)
+        Me.GroupBox1.Size = New System.Drawing.Size(546, 258)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Boost or Restore"
@@ -74,11 +74,9 @@ Partial Class Form1
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Label2.Location = New System.Drawing.Point(8, 45)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(484, 60)
+        Me.Label2.Size = New System.Drawing.Size(484, 80)
         Me.Label2.TabIndex = 7
-        Me.Label2.Text = "Read Please: Due to EAC, You can not boost during mid gameplay." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "We can boost the" &
-    " game through the launcher. So click boost now." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "When you are done playing, make" &
-    " sure to click restore." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label2.Text = resources.GetString("Label2.Text")
         '
         'wtstatus
         '
@@ -95,7 +93,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!)
-        Me.Label1.Location = New System.Drawing.Point(3, 111)
+        Me.Label1.Location = New System.Drawing.Point(3, 136)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(316, 29)
         Me.Label1.TabIndex = 6
@@ -104,7 +102,7 @@ Partial Class Form1
         'aboost
         '
         Me.aboost.AutoSize = True
-        Me.aboost.Location = New System.Drawing.Point(225, 181)
+        Me.aboost.Location = New System.Drawing.Point(224, 235)
         Me.aboost.Name = "aboost"
         Me.aboost.Size = New System.Drawing.Size(84, 17)
         Me.aboost.TabIndex = 5
@@ -130,6 +128,7 @@ Partial Class Form1
         Me.bbtn.TabIndex = 3
         Me.bbtn.Text = "Boost"
         Me.bbtn.UseVisualStyleBackColor = True
+        Me.bbtn.Visible = False
         '
         'TabControl1
         '
@@ -139,7 +138,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(560, 235)
+        Me.TabControl1.Size = New System.Drawing.Size(560, 290)
         Me.TabControl1.TabIndex = 5
         '
         'TabPage1
@@ -148,7 +147,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(552, 209)
+        Me.TabPage1.Size = New System.Drawing.Size(552, 264)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Main Settings"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -160,7 +159,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(624, 209)
+        Me.TabPage2.Size = New System.Drawing.Size(552, 209)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Advanced Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -173,7 +172,7 @@ Partial Class Form1
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Location = New System.Drawing.Point(3, 118)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(618, 88)
+        Me.GroupBox4.Size = New System.Drawing.Size(546, 88)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Select Which Programs to force onto the cores chosen."
@@ -185,7 +184,7 @@ Partial Class Form1
         Me.pclist.FormattingEnabled = True
         Me.pclist.Location = New System.Drawing.Point(3, 16)
         Me.pclist.Name = "pclist"
-        Me.pclist.Size = New System.Drawing.Size(612, 46)
+        Me.pclist.Size = New System.Drawing.Size(540, 46)
         Me.pclist.Sorted = True
         Me.pclist.TabIndex = 0
         '
@@ -194,7 +193,7 @@ Partial Class Form1
         Me.rfspcl.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.rfspcl.Location = New System.Drawing.Point(3, 62)
         Me.rfspcl.Name = "rfspcl"
-        Me.rfspcl.Size = New System.Drawing.Size(612, 23)
+        Me.rfspcl.Size = New System.Drawing.Size(540, 23)
         Me.rfspcl.TabIndex = 1
         Me.rfspcl.Text = "Refresh Process List"
         Me.rfspcl.UseVisualStyleBackColor = True
@@ -207,7 +206,7 @@ Partial Class Form1
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(618, 115)
+        Me.GroupBox3.Size = New System.Drawing.Size(546, 115)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Select Cores to Use"
@@ -220,7 +219,7 @@ Partial Class Form1
         Me.cs.Location = New System.Drawing.Point(3, 16)
         Me.cs.MultiColumn = True
         Me.cs.Name = "cs"
-        Me.cs.Size = New System.Drawing.Size(612, 73)
+        Me.cs.Size = New System.Drawing.Size(540, 73)
         Me.cs.TabIndex = 0
         '
         'fcp2
@@ -228,7 +227,7 @@ Partial Class Form1
         Me.fcp2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.fcp2.Location = New System.Drawing.Point(3, 89)
         Me.fcp2.Name = "fcp2"
-        Me.fcp2.Size = New System.Drawing.Size(612, 23)
+        Me.fcp2.Size = New System.Drawing.Size(540, 23)
         Me.fcp2.TabIndex = 1
         Me.fcp2.Text = "Force Checked Processes"
         Me.fcp2.UseVisualStyleBackColor = True
@@ -250,7 +249,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.MenuHighlight
-        Me.ClientSize = New System.Drawing.Size(560, 235)
+        Me.ClientSize = New System.Drawing.Size(560, 290)
         Me.Controls.Add(Me.TabControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
