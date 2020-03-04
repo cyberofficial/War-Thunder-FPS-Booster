@@ -5,7 +5,7 @@
 Download: https://github.com/JoeKoen/War-Thunder-FPS-Booster/releases
 
 ## You can see the reasults below.
-### Resaults may vary per machine.
+### Results may vary per machine.
 
 ### Tank Battle - CPU - Before Boosting
 ![](https://i.imgur.com/FKA35D6.png)
