@@ -12,30 +12,28 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
-            corecount = corecount + 1
+            corecount += 1
             cs.Items.Add(corecount - 1)
         End While
         TabControl1.TabPages.Remove(TabPage2)
     End Sub
-
     Private Sub BoostWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BoostWorker.DoWork
         total = 0
         EAC_on = True
         For Each proc In Process.GetProcesses
             Try
                 proc.ProcessorAffinity = New IntPtr(1)
-                BoostWorker.ReportProgress(1, "Stage 1 of 2" & vbNewLine & "Please dont exit the app.")
+                BoostWorker.ReportProgress(1, "Preparing Stage" & vbNewLine & "Please don't exit the app.")
             Catch ex As Exception
 
             End Try
-
         Next
         cores = System.Environment.ProcessorCount.ToString
         n = 2 ^ cores - 1
         For Each proc In Process.GetProcesses
             Try
-                BoostWorker.ReportProgress(67, "Stage 2 of 2" & vbNewLine & "Please dont exit the app.")
-                Thread.Sleep(15)
+                ' Exclusion List
+                BoostWorker.ReportProgress(67, "Modifying System" & vbNewLine & "Please don't exit the app.")
                 If proc.ToString.Contains("aces") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
@@ -72,38 +70,41 @@ Public Class Form1
                 If proc.ToString.Contains("wtfpsbooster") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
-                If proc.ToString.Contains("wtfpsbooster_64bit") Then
+                If proc.ToString.Contains("nvcontainer") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
-                If proc.ToString.Contains("wtfpsbooster_32bit") Then
+                If proc.ToString.Contains("NVDisplay.Container") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("NVIDIA RTX Voice") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("NVIDIA Share") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("NVIDIA Web Helper") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("nvsphelper64") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("voicemeter") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("voicemeter8") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
             Catch ex As Exception
-
             End Try
-
         Next
-
     End Sub
-
     Private Sub BoostWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BoostWorker.ProgressChanged
         Label1.Text = DirectCast(e.UserState, String)
 
     End Sub
-
     Private Sub BoostWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BoostWorker.RunWorkerCompleted
-        Label1.Text = "War Thunder Status: Boosted" & vbNewLine & "Restore before closing."
+        Label1.Text = "War Thunder Status: Boosted" & vbNewLine & "PC Status: Most resources are dedicated to War Thunder" & vbNewLine & "Restore before closing."
         Me.Enabled = True
-    End Sub
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles bbtn.Click
-        Me.Enabled = False
-        bbtn.Enabled = 0
-        Try
-            BoostWorker.WorkerReportsProgress = True
-            BoostWorker.RunWorkerAsync()
-        Catch ex As Exception
-
-        End Try
     End Sub
     Private Sub RestoreWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RestoreWorker.DoWork
         For Each proc In Process.GetProcesses
@@ -115,14 +116,11 @@ Public Class Form1
             End Try
         Next
     End Sub
-
     Private Sub RestoreWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles RestoreWorker.ProgressChanged
         Label1.Text = e.UserState.ToString
     End Sub
-
     Private Sub RestoreWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles RestoreWorker.RunWorkerCompleted
-        Label1.Text = "War Thunder Status: Normal"
-        bbtn.Enabled = True
+        Label1.Text = "PC Status: Normal"
         Me.Enabled = True
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -136,7 +134,7 @@ Public Class Form1
 
         End Try
     End Sub
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles rfspcl.Click
+    Private Sub rfspcl_Click(sender As Object, e As EventArgs) Handles rfspcl.Click
         pclist.Items.Clear()
         For Each proc In Process.GetProcesses
             Try
@@ -148,7 +146,7 @@ Public Class Form1
             End Try
         Next
     End Sub
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles fcp2.Click
+    Private Sub fcp2_Click(sender As Object, e As EventArgs) Handles fcp2.Click
         Dim total As Integer
         total = 0
         For Each item In cs.CheckedItems
@@ -175,7 +173,6 @@ Public Class Form1
             End Try
         Next
     End Sub
-
     Private Sub Tauto_Tick(sender As Object, e As EventArgs) Handles tauto.Tick
         launcher1 = Process.GetProcessesByName("launcher")
         aces1 = Process.GetProcessesByName("aces")
@@ -184,14 +181,14 @@ Public Class Form1
             EAC_on = False
             wtstatus.Text = "✓ Launcher"
             wtstatus.ForeColor = Color.Green
-            'bbtn.Enabled = True
-            'tauto.Interval = 2000
         ElseIf aces1.Count > 0 Then
-            wtstatus.Text = "x WT is Running"
+            wtstatus.Text = "🧸 WT is Running"
             wtstatus.ForeColor = Color.Red
             If eac.Count > 0 Then
                 If EAC_on = False Then
                     Try
+                        wtstatus.Text = "🧸 EAC Module Loaded"
+                        wtstatus.ForeColor = Color.DarkSlateBlue
                         BoostWorker.WorkerReportsProgress = True
                         BoostWorker.RunWorkerAsync()
                     Catch ex As Exception
@@ -199,13 +196,9 @@ Public Class Form1
                     End Try
                 End If
             End If
-            'bbtn.Enabled = False
-            'tauto.Interval = 10000
         Else
             wtstatus.Text = "x Not Running"
             wtstatus.ForeColor = Color.Red
-            'bbtn.Enabled = False
-            'tauto.Interval = 1000
         End If
     End Sub
 End Class
