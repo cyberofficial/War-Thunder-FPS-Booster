@@ -117,13 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TextBox1.Text" xml:space="preserve">
-    <value>Read Please: Due to EAC, You can not boost during mid gameplay.
-We can boost the game after it launches. This is automated.
-If your computer is struggling, Press restore. 
-You may reboost the game with the reboost button.
-If you tab out and want to use the pc normal again, press Restore PC
-If you are about to tab back in, press Re-Boost, then tab back in.</value>
+  <data name="InfoBox.Text" xml:space="preserve">
+    <value>Please note, results may vary depending on the system.
+How to use the program:
+Step 1: Make sure War Thunder + the Launcher are closed, if they are open, close them now and relaunch this program.
+Step 2: Launch War Thunder’s Launcher
+Step 3: Wait for the Text to verify the launcher is running
+Step 4: Click the Gear cog next to the text watch dog, enter a reasonable number.
+Step 5: You are all set, click Launch on your Launcher and the game should boost automatically.
+--------------------------------------
+Optional Stuff:
+If you do not tab out of the game, and always stay in game, click Extra Boost, and read the prompt, this will give you a little bit more fps, like the program states, squeeze as much FPS as possible
+If you Tab out, and want to do normal stuff on your PC, click Remove Boost, and most applications will return to normal, please note you will still have war thunder in boosted mode. Click on Boost again before you tab back in.
+If you find that boost impacts your gameplay, click restore, finish your gameplay and restart your game without the booster program.
+</value>
   </data>
   <metadata name="tauto.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -133,6 +140,9 @@ If you are about to tab back in, press Re-Boost, then tab back in.</value>
   </metadata>
   <metadata name="RestoreWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>219, 17</value>
+  </metadata>
+  <metadata name="WatchDog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>352, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

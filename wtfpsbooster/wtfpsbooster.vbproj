@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>144</ApplicationRevision>
-    <ApplicationVersion>1.83.0.%2a</ApplicationVersion>
+    <ApplicationRevision>28</ApplicationRevision>
+    <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -66,10 +66,10 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>388B0113AE583A7D267A6C127A106E68C9E5FD4A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CC58DD6AC1739A324B7570FBB9FBB4E5B4456E42</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ControlMyCores_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>wtfpsbooster_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -196,9 +196,11 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -220,6 +222,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +252,12 @@
     <Compile Include="splash.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WatchDog_Settings.Designer.vb">
+      <DependentUpon>WatchDog_Settings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WatchDog_Settings.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -262,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="splash.resx">
       <DependentUpon>splash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchDog_Settings.resx">
+      <DependentUpon>WatchDog_Settings.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -277,9 +289,11 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="wtfpsbooster_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_j81_icon.ico" />
+    <None Include="Resources\gearcog.png" />
     <Content Include="Table.txt" />
     <None Include="War_Thunder_Logo.png" />
   </ItemGroup>

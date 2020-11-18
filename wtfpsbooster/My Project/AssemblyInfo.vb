@@ -10,11 +10,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Warthunder FPS Booster")> 
-<Assembly: AssemblyDescription("Boost Your warthunder FPS")> 
-<Assembly: AssemblyCompany("Cyber Apps")> 
-<Assembly: AssemblyProduct("Control My Cores")>
-<Assembly: AssemblyCopyright("Copyright © 2016-2019")>
+<Assembly: AssemblyTitle("War Thunder FPS Booster")>
+<Assembly: AssemblyDescription("Boost your FPS in the Game War Thunder")>
+<Assembly: AssemblyCompany("Cyber Apps")>
+<Assembly: AssemblyProduct("WTFPSBooster")>
+<Assembly: AssemblyCopyright("Copyright © 2016-2020")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)> 
@@ -33,7 +33,7 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.83.0.144")>
-<Assembly: AssemblyFileVersion("1.83.0.144")>
+<Assembly: AssemblyVersion("2.1.0.28")>
+<Assembly: AssemblyFileVersion("2.1.0.28")>
 
 <Assembly: NeutralResourcesLanguageAttribute("en-US")> 
