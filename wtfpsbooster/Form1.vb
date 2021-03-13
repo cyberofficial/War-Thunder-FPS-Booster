@@ -60,19 +60,56 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub frmCustomerDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        If (e.Alt AndAlso (e.KeyCode = Keys.K) AndAlso (e.KeyCode = Keys.L)) Then
-            ' When Alt + P is pressed, the Click event for the print
-            ' button is raised.
-            Try
-                cores = System.Environment.ProcessorCount.ToString
-                n = 2 ^ cores - 1
-                RestoreWorker.RunWorkerAsync()
+    ' this obs didnt work, will try and remake this.
+    'Private Sub frmCustomerDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    '    If (e.Alt AndAlso (e.KeyCode = Keys.K) AndAlso (e.KeyCode = Keys.L)) Then
+    '        ' When Alt + P is pressed, the Click event for the print
+    '        ' button is raised.
+    '        Try
+    '            cores = System.Environment.ProcessorCount.ToString
+    '            n = 2 ^ cores - 1
+    '            RestoreWorker.RunWorkerAsync()
 
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End If
+    'End Sub
+
+    Private Sub Reboost_Click(sender As Object, e As EventArgs) Handles BoostBtn.Click
+        Try
+            BoostWorker_New_25.WorkerReportsProgress = True
+            BoostWorker_New_25.RunWorkerAsync()
+
+            'BoostWorker.WorkerReportsProgress = True
+            'BoostWorker.RunWorkerAsync()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    ' ------------- New Boost worker - rewritten ------------------ `
+    Private Sub BackGroundWorker_New_25_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BoostWorker_New_25.DoWork
+        ' Setting Values first
+        total = 0
+        EAC_on = True
+        cores = System.Environment.ProcessorCount.ToString
+        n = 2 ^ cores - 1
+
+        ' Prepare all applications by setting a value to the lowest first.
+
+        ' For every process in this point of time, we set their core count to core 0 ( 1st core)
+        For Each proc In Process.GetProcesses
+            Try
+                proc.ProcessorAffinity = New IntPtr(1)
+                BoostWorker_New_25.ReportProgress(1, "Preparing Stage" & vbNewLine & "Please don't exit the app.")
             Catch ex As Exception
 
             End Try
-        End If
+        Next
+
+
+
     End Sub
 
     Private Sub BoostWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BoostWorker.DoWork
@@ -92,76 +129,78 @@ Public Class Form1
             Try
                 ' Exclusion List
                 BoostWorker.ReportProgress(67, "Modifying System" & vbNewLine & "Please don't exit the app.")
-                If proc.ToString.Contains("aces") Then
+                If proc.ToString.Contains("aces" Or "launcher" Or "explorer" Or "wtfpsbooster" Or "EasyAntiCheat" Or "audiodg" Or "eac_launcher") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
-                If proc.ToString.Contains("launcher") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("explorer") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("wtfpsbooster") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("EasyAntiCheat") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("audiodg") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
+                ' Compress into one line.
+                'If proc.ToString.Contains("launcher") Then
+                '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                'End If
+                'If proc.ToString.Contains("explorer") Then
+                '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                'End If
+                'If proc.ToString.Contains("wtfpsbooster") Then
+                '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                'End If
+                'If proc.ToString.Contains("EasyAntiCheat") Then
+                '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                'End If
+                'If proc.ToString.Contains("audiodg") Then
+                '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                'End If
                 If ExBoost = False Then
-                    If proc.ToString.Contains("Discord") Then
+                    If proc.ToString.Contains("Discord" Or "ts3client_win64" Or "GameOverlayUI" Or "Steam" Or "SteamService" Or "steamwebhelper" Or "Dxtory" Or "Dxtory64" Or "nvcontainer" Or "NVDisplay.Container" Or "NVIDIA RTX Voice" Or "NVIDIA Share" Or "nvsphelper64" Or "voicemeter" Or "voicemeter8" Or "conhost") Then
                         proc.ProcessorAffinity = New IntPtr(n - 1)
                     End If
-                    If proc.ToString.Contains("ts3client_win64") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("GameOverlayUI") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("Steam") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("SteamService") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("steamwebhelper") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("Dxtory") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("Dxtory64") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("nvcontainer") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("NVDisplay.Container") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("NVIDIA RTX Voice") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("NVIDIA Share") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("NVIDIA Web Helper") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("nvsphelper64") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("voicemeter") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("voicemeter8") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
-                    If proc.ToString.Contains("conhost") Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
+                    ' compress into one line
+                    'If proc.ToString.Contains("ts3client_win64") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("GameOverlayUI") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("Steam") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("SteamService") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("steamwebhelper") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("Dxtory") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("Dxtory64") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("nvcontainer") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("NVDisplay.Container") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("NVIDIA RTX Voice") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("NVIDIA Share") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("NVIDIA Web Helper") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("nvsphelper64") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("voicemeter") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("voicemeter8") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    'If proc.ToString.Contains("conhost") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
 
                 End If
             Catch ex As Exception
@@ -321,47 +360,9 @@ Public Class Form1
         Catch ex As Exception
 
         End Try
-
-
-        ' -------------------------------
-        '            Old Code
-        ' -------------------------------
-        'launcher1 = Process.GetProcessesByName("launcher")
-        'aces1 = Process.GetProcessesByName("aces")
-        'eac = Process.GetProcessesByName("EasyAntiCheat")
-        'If launcher1.Count > 0 Then
-        '    EAC_on = False
-        '    wtstatus.Text = "✓ Launcher"
-        '    wtstatus.ForeColor = Color.Green
-        'ElseIf aces1.Count > 0 Then
-        '    wtstatus.Text = "🧸 WT is Running"
-        '    wtstatus.ForeColor = Color.Red
-        '    If eac.Count > 0 Then
-        '        If EAC_on = False Then
-        '            Try
-        '                wtstatus.Text = "🧸 EAC Module Loaded"
-        '                wtstatus.ForeColor = Color.DarkSlateBlue
-        '                BoostWorker.WorkerReportsProgress = True
-        '                BoostWorker.RunWorkerAsync()
-        '            Catch ex As Exception
-
-        '            End Try
-        '        End If
-        '    End If
-        'Else
-        '    wtstatus.Text = "x Not Running"
-        '    wtstatus.ForeColor = Color.Red
-        'End If
     End Sub
 
-    Private Sub Reboost_Click(sender As Object, e As EventArgs) Handles BoostBtn.Click
-        Try
-            BoostWorker.WorkerReportsProgress = True
-            BoostWorker.RunWorkerAsync()
-        Catch ex As Exception
 
-        End Try
-    End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Application.Exit()
     End Sub
@@ -414,4 +415,5 @@ Public Class Form1
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         WatchDog_Settings.ShowDialog()
     End Sub
+
 End Class

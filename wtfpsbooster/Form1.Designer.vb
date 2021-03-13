@@ -49,6 +49,7 @@ Partial Class Form1
         Me.WatchDogTxt = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.BoostWorker_New_25 = New System.ComponentModel.BackgroundWorker()
         Me.MainControlPanel.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -99,7 +100,6 @@ Partial Class Form1
         Me.BoostBtn.TabIndex = 8
         Me.BoostBtn.Text = "Boost"
         Me.BoostBtn.UseVisualStyleBackColor = False
-        Me.BoostBtn.Visible = False
         '
         'wtstatus
         '
@@ -342,6 +342,9 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 9
         Me.PictureBox1.TabStop = False
         '
+        'BoostWorker_New_25
+        '
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -401,4 +404,5 @@ Partial Class Form1
     Friend WithEvents WatchDogTxt As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents BoostWorker_New_25 As System.ComponentModel.BackgroundWorker
 End Class

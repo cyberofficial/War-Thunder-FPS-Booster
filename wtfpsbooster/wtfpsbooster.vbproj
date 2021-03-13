@@ -66,10 +66,10 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>CC58DD6AC1739A324B7570FBB9FBB4E5B4456E42</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>3E37D8E0B61F0718D83DCD41FCFCD9C7020E06AD</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>wtfpsbooster_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>wtfpsbooster_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -289,6 +289,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="wtfpsbooster_1_TemporaryKey.pfx" />
     <None Include="wtfpsbooster_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
