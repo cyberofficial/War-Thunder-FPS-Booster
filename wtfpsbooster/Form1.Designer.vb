@@ -50,6 +50,7 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.BoostWorker_New_25 = New System.ComponentModel.BackgroundWorker()
+        Me.WatchDogWaiter = New System.Windows.Forms.Timer(Me.components)
         Me.MainControlPanel.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -63,9 +64,11 @@ Partial Class Form1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.SkyBlue
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox1.Location = New System.Drawing.Point(4, 5)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(737, 318)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox1.Size = New System.Drawing.Size(1110, 495)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Boost or Restore"
@@ -75,12 +78,13 @@ Partial Class Form1
         Me.InfoBox.BackColor = System.Drawing.Color.Linen
         Me.InfoBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.InfoBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!)
-        Me.InfoBox.Location = New System.Drawing.Point(0, 150)
+        Me.InfoBox.Location = New System.Drawing.Point(0, 231)
+        Me.InfoBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.InfoBox.Multiline = True
         Me.InfoBox.Name = "InfoBox"
         Me.InfoBox.ReadOnly = True
         Me.InfoBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.InfoBox.Size = New System.Drawing.Size(322, 325)
+        Me.InfoBox.Size = New System.Drawing.Size(483, 500)
         Me.InfoBox.TabIndex = 9
         Me.InfoBox.Text = resources.GetString("InfoBox.Text")
         '
@@ -93,31 +97,35 @@ Partial Class Form1
         Me.BoostBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BoostBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.BoostBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BoostBtn.Font = New System.Drawing.Font("Rockwell", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.BoostBtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
         Me.BoostBtn.Location = New System.Drawing.Point(0, 0)
+        Me.BoostBtn.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BoostBtn.Name = "BoostBtn"
-        Me.BoostBtn.Size = New System.Drawing.Size(322, 50)
+        Me.BoostBtn.Size = New System.Drawing.Size(483, 77)
         Me.BoostBtn.TabIndex = 8
-        Me.BoostBtn.Text = "Boost"
+        Me.BoostBtn.Text = "Re-Boost"
         Me.BoostBtn.UseVisualStyleBackColor = False
+        Me.BoostBtn.Visible = False
         '
         'wtstatus
         '
         Me.wtstatus.AutoSize = True
-        Me.wtstatus.Font = New System.Drawing.Font("Rockwell", 24.0!, System.Drawing.FontStyle.Bold)
+        Me.wtstatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold)
         Me.wtstatus.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.wtstatus.Location = New System.Drawing.Point(328, 431)
+        Me.wtstatus.Location = New System.Drawing.Point(492, 663)
+        Me.wtstatus.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.wtstatus.Name = "wtstatus"
-        Me.wtstatus.Size = New System.Drawing.Size(469, 39)
+        Me.wtstatus.Size = New System.Drawing.Size(654, 55)
         Me.wtstatus.TabIndex = 6
         Me.wtstatus.Text = "Checking for War Thunder..."
         '
         'pcstatus_txt
         '
-        Me.pcstatus_txt.Font = New System.Drawing.Font("Rockwell", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pcstatus_txt.Location = New System.Drawing.Point(328, 9)
+        Me.pcstatus_txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pcstatus_txt.Location = New System.Drawing.Point(492, 14)
+        Me.pcstatus_txt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.pcstatus_txt.Name = "pcstatus_txt"
-        Me.pcstatus_txt.Size = New System.Drawing.Size(625, 286)
+        Me.pcstatus_txt.Size = New System.Drawing.Size(938, 440)
         Me.pcstatus_txt.TabIndex = 6
         Me.pcstatus_txt.Text = "PC Status: Normal"
         '
@@ -130,10 +138,11 @@ Partial Class Form1
         Me.RestoreBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.RestoreBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.RestoreBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RestoreBtn.Font = New System.Drawing.Font("Rockwell", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RestoreBtn.Location = New System.Drawing.Point(0, 100)
+        Me.RestoreBtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RestoreBtn.Location = New System.Drawing.Point(0, 154)
+        Me.RestoreBtn.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RestoreBtn.Name = "RestoreBtn"
-        Me.RestoreBtn.Size = New System.Drawing.Size(322, 50)
+        Me.RestoreBtn.Size = New System.Drawing.Size(483, 77)
         Me.RestoreBtn.TabIndex = 4
         Me.RestoreBtn.Text = "Remove Boost"
         Me.RestoreBtn.UseVisualStyleBackColor = False
@@ -142,20 +151,22 @@ Partial Class Form1
         '
         Me.MainControlPanel.Controls.Add(Me.TabPage1)
         Me.MainControlPanel.Controls.Add(Me.TabPage2)
-        Me.MainControlPanel.Location = New System.Drawing.Point(973, 537)
+        Me.MainControlPanel.Location = New System.Drawing.Point(1460, 826)
+        Me.MainControlPanel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MainControlPanel.Name = "MainControlPanel"
         Me.MainControlPanel.SelectedIndex = 0
-        Me.MainControlPanel.Size = New System.Drawing.Size(751, 350)
+        Me.MainControlPanel.Size = New System.Drawing.Size(1126, 538)
         Me.MainControlPanel.TabIndex = 5
         Me.MainControlPanel.Visible = False
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.GroupBox1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(743, 324)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TabPage1.Size = New System.Drawing.Size(1118, 505)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Main Settings"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -164,10 +175,11 @@ Partial Class Form1
         '
         Me.TabPage2.Controls.Add(Me.GroupBox4)
         Me.TabPage2.Controls.Add(Me.GroupBox3)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(743, 324)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TabPage2.Size = New System.Drawing.Size(1118, 505)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Advanced Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -178,9 +190,11 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.pclist)
         Me.GroupBox4.Controls.Add(Me.rfspcl)
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 118)
+        Me.GroupBox4.Location = New System.Drawing.Point(4, 182)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(737, 203)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox4.Size = New System.Drawing.Size(1110, 318)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Select Which Programs to force onto the cores chosen."
@@ -190,18 +204,20 @@ Partial Class Form1
         Me.pclist.BackColor = System.Drawing.Color.SkyBlue
         Me.pclist.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pclist.FormattingEnabled = True
-        Me.pclist.Location = New System.Drawing.Point(3, 16)
+        Me.pclist.Location = New System.Drawing.Point(4, 24)
+        Me.pclist.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.pclist.Name = "pclist"
-        Me.pclist.Size = New System.Drawing.Size(731, 161)
+        Me.pclist.Size = New System.Drawing.Size(1102, 254)
         Me.pclist.Sorted = True
         Me.pclist.TabIndex = 0
         '
         'rfspcl
         '
         Me.rfspcl.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.rfspcl.Location = New System.Drawing.Point(3, 177)
+        Me.rfspcl.Location = New System.Drawing.Point(4, 278)
+        Me.rfspcl.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.rfspcl.Name = "rfspcl"
-        Me.rfspcl.Size = New System.Drawing.Size(731, 23)
+        Me.rfspcl.Size = New System.Drawing.Size(1102, 35)
         Me.rfspcl.TabIndex = 1
         Me.rfspcl.Text = "Refresh Process List"
         Me.rfspcl.UseVisualStyleBackColor = True
@@ -212,9 +228,11 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.cs)
         Me.GroupBox3.Controls.Add(Me.fcp2)
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox3.Location = New System.Drawing.Point(4, 5)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(737, 115)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox3.Size = New System.Drawing.Size(1110, 177)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Select Cores to Use"
@@ -224,18 +242,20 @@ Partial Class Form1
         Me.cs.BackColor = System.Drawing.Color.SkyBlue
         Me.cs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cs.FormattingEnabled = True
-        Me.cs.Location = New System.Drawing.Point(3, 16)
+        Me.cs.Location = New System.Drawing.Point(4, 24)
+        Me.cs.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cs.MultiColumn = True
         Me.cs.Name = "cs"
-        Me.cs.Size = New System.Drawing.Size(731, 73)
+        Me.cs.Size = New System.Drawing.Size(1102, 113)
         Me.cs.TabIndex = 0
         '
         'fcp2
         '
         Me.fcp2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.fcp2.Location = New System.Drawing.Point(3, 89)
+        Me.fcp2.Location = New System.Drawing.Point(4, 137)
+        Me.fcp2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.fcp2.Name = "fcp2"
-        Me.fcp2.Size = New System.Drawing.Size(731, 23)
+        Me.fcp2.Size = New System.Drawing.Size(1102, 35)
         Me.fcp2.TabIndex = 1
         Me.fcp2.Text = "Force Checked Processes"
         Me.fcp2.UseVisualStyleBackColor = True
@@ -261,8 +281,9 @@ Partial Class Form1
         Me.LeftPanel.Controls.Add(Me.BoostBtn)
         Me.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left
         Me.LeftPanel.Location = New System.Drawing.Point(0, 0)
+        Me.LeftPanel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.LeftPanel.Name = "LeftPanel"
-        Me.LeftPanel.Size = New System.Drawing.Size(322, 475)
+        Me.LeftPanel.Size = New System.Drawing.Size(483, 731)
         Me.LeftPanel.TabIndex = 6
         '
         'ExtraBoost
@@ -274,10 +295,11 @@ Partial Class Form1
         Me.ExtraBoost.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Goldenrod
         Me.ExtraBoost.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ExtraBoost.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ExtraBoost.Font = New System.Drawing.Font("Rockwell", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.ExtraBoost.Location = New System.Drawing.Point(0, 50)
+        Me.ExtraBoost.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.ExtraBoost.Location = New System.Drawing.Point(0, 77)
+        Me.ExtraBoost.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ExtraBoost.Name = "ExtraBoost"
-        Me.ExtraBoost.Size = New System.Drawing.Size(322, 50)
+        Me.ExtraBoost.Size = New System.Drawing.Size(483, 77)
         Me.ExtraBoost.TabIndex = 10
         Me.ExtraBoost.Text = "Extra Boost"
         Me.ExtraBoost.UseVisualStyleBackColor = False
@@ -291,10 +313,11 @@ Partial Class Form1
         Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.Red
         Me.Button3.FlatAppearance.BorderSize = 2
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Rockwell", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.Button3.Location = New System.Drawing.Point(999, 0)
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.Button3.Location = New System.Drawing.Point(1498, 0)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(38, 37)
+        Me.Button3.Size = New System.Drawing.Size(49, 47)
         Me.Button3.TabIndex = 7
         Me.Button3.Text = "X"
         Me.Button3.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -302,16 +325,17 @@ Partial Class Form1
         '
         'WatchDog
         '
-        Me.WatchDog.Interval = 20000
+        Me.WatchDog.Interval = 10000
         '
         'WatchDogTxt
         '
         Me.WatchDogTxt.AutoSize = True
-        Me.WatchDogTxt.Font = New System.Drawing.Font("Rockwell", 24.0!, System.Drawing.FontStyle.Bold)
+        Me.WatchDogTxt.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold)
         Me.WatchDogTxt.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.WatchDogTxt.Location = New System.Drawing.Point(381, 392)
+        Me.WatchDogTxt.Location = New System.Drawing.Point(572, 603)
+        Me.WatchDogTxt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.WatchDogTxt.Name = "WatchDogTxt"
-        Me.WatchDogTxt.Size = New System.Drawing.Size(219, 39)
+        Me.WatchDogTxt.Size = New System.Drawing.Size(316, 55)
         Me.WatchDogTxt.TabIndex = 6
         Me.WatchDogTxt.Text = "Watch Dog: -"
         '
@@ -323,10 +347,11 @@ Partial Class Form1
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.Chartreuse
         Me.Button1.FlatAppearance.BorderSize = 2
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Rockwell", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.Button1.Location = New System.Drawing.Point(959, 0)
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.Button1.Location = New System.Drawing.Point(1438, 0)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(34, 37)
+        Me.Button1.Size = New System.Drawing.Size(46, 47)
         Me.Button1.TabIndex = 8
         Me.Button1.Text = "_"
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -335,9 +360,10 @@ Partial Class Form1
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.wtfpsbooster.My.Resources.Resources.gearcog
-        Me.PictureBox1.Location = New System.Drawing.Point(335, 392)
+        Me.PictureBox1.Location = New System.Drawing.Point(502, 603)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(40, 36)
+        Me.PictureBox1.Size = New System.Drawing.Size(60, 55)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 9
         Me.PictureBox1.TabStop = False
@@ -345,12 +371,16 @@ Partial Class Form1
         'BoostWorker_New_25
         '
         '
+        'WatchDogWaiter
+        '
+        Me.WatchDogWaiter.Interval = 1000
+        '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(144.0!, 144.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.BackColor = System.Drawing.SystemColors.MenuHighlight
-        Me.ClientSize = New System.Drawing.Size(1037, 475)
+        Me.ClientSize = New System.Drawing.Size(1556, 731)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button3)
@@ -361,8 +391,9 @@ Partial Class Form1
         Me.Controls.Add(Me.pcstatus_txt)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(765, 329)
+        Me.MinimumSize = New System.Drawing.Size(1148, 506)
         Me.Name = "Form1"
         Me.Opacity = 0.95R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -405,4 +436,5 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents BoostWorker_New_25 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents WatchDogWaiter As Timer
 End Class

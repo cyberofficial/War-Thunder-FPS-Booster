@@ -6,7 +6,8 @@ Supported security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.99.1.39 | :white_check_mark: |
+| 2.7.0.x | :white_check_mark: |
+| 1.99.1.39 | :x: |
 | 1.95.0.139 | :x: |
 | 1.95.0.137 | :x: |
 | 1.89.1.120 | :x: |

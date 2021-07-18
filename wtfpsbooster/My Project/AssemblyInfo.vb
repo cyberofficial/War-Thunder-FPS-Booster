@@ -1,7 +1,5 @@
-﻿Imports System.Resources
-
-Imports System
-Imports System.Reflection
+﻿Imports System.Reflection
+Imports System.Resources
 Imports System.Runtime.InteropServices
 
 ' General Information about an assembly is controlled through the following 
@@ -15,9 +13,9 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("Cyber Apps")>
 <Assembly: AssemblyProduct("WTFPSBooster")>
 <Assembly: AssemblyCopyright("Copyright © 2016-2020")>
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTrademark("")>
 
-<Assembly: ComVisible(False)> 
+<Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
 <Assembly: Guid("7392bb71-7b9a-40da-834a-f377d9ab42be")>
@@ -36,4 +34,4 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyVersion("2.1.0.28")>
 <Assembly: AssemblyFileVersion("2.1.0.28")>
 
-<Assembly: NeutralResourcesLanguageAttribute("en-US")> 
+<Assembly: NeutralResourcesLanguageAttribute("en-US")>

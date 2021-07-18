@@ -1,5 +1,4 @@
 ﻿Imports System.Runtime.InteropServices
-Imports System.Threading
 Public Class Form1
     Dim corecount As Integer
     Dim status As String
@@ -15,6 +14,7 @@ Public Class Form1
     Dim DidWtClose As Boolean
     Dim ExBoost As Boolean
     Dim WatchDogTimer As Integer
+    Dim wdtimer_counter As Integer
 
     Public Const WM_NCLBUTTONDOWN As Integer = &HA1
     Public Const HT_CAPTION As Integer = &H2
@@ -34,26 +34,44 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub frmCustomerDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ' When the form loads, the KeyPreview property is set to True.
-        ' This lets the form capture keyboard events before
-        ' any other element in the form.
-        Me.KeyPreview = True
-    End Sub
+    ' ----------------------------------
+    '   Not needed any more.
+    ' ----------------------------------
+
+    'Private Sub FrmCustomerDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    '    ' When the form loads, the KeyPreview property is set to True.
+    '    ' This lets the form capture keyboard events before
+    '    ' any other element in the form.
+    '    Me.KeyPreview = True
+    'End Sub
 
 
-    ' -------------------------------
-    ' Use this form loading
-    ' -------------------------------
+    ' ----------------------------------
+    '   Use this form loading for code
+    ' ----------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Me.KeyPreview = True
+
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
             corecount += 1
             cs.Items.Add(corecount - 1)
         End While
         MainControlPanel.TabPages.Remove(TabPage2)
+
+
+        ' ------------------------------------------------
+        '   Watch Dog Timer settings and waiter settings
+        ' ------------------------------------------------
         WatchDog_Settings.WDS_Num.Value = My.Settings.watchdog_timer.ToString
         WatchDog.Interval = My.Settings.watchdog_timer
+
+
+        ' ---------------------------------------------------------------
+        '   Lazy Check for file name tampering, prevents code breaking
+        ' ---------------------------------------------------------------
+
         If Application.ExecutablePath.Contains("wtfpsbooster.exe") = False Then
             MessageBox.Show("It seems like the file name was changed, please rename back to: wtfpsbooster.exe" & vbNewLine & "The name is hard coded to the filename and this helps makes things easier, You can always make a shortcut though :)")
             Application.Exit()
@@ -129,78 +147,81 @@ Public Class Form1
             Try
                 ' Exclusion List
                 BoostWorker.ReportProgress(67, "Modifying System" & vbNewLine & "Please don't exit the app.")
-                If proc.ToString.Contains("aces" Or "launcher" Or "explorer" Or "wtfpsbooster" Or "EasyAntiCheat" Or "audiodg" Or "eac_launcher") Then
+                'If proc.ToString.Contains("aces" Or "launcher" Or "explorer" Or "wtfpsbooster" Or "EasyAntiCheat" Or "audiodg" Or "eac_launcher") Then
+                '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                'End If
+                ' Compress into one line.
+                If proc.ToString.Contains("aces") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
-                ' Compress into one line.
-                'If proc.ToString.Contains("launcher") Then
-                '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                'End If
-                'If proc.ToString.Contains("explorer") Then
-                '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                'End If
-                'If proc.ToString.Contains("wtfpsbooster") Then
-                '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                'End If
-                'If proc.ToString.Contains("EasyAntiCheat") Then
-                '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                'End If
-                'If proc.ToString.Contains("audiodg") Then
-                '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                'End If
+                If proc.ToString.Contains("launcher") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("explorer") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("wtfpsbooster") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("EasyAntiCheat") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
+                If proc.ToString.Contains("audiodg") Then
+                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                End If
                 If ExBoost = False Then
-                    If proc.ToString.Contains("Discord" Or "ts3client_win64" Or "GameOverlayUI" Or "Steam" Or "SteamService" Or "steamwebhelper" Or "Dxtory" Or "Dxtory64" Or "nvcontainer" Or "NVDisplay.Container" Or "NVIDIA RTX Voice" Or "NVIDIA Share" Or "nvsphelper64" Or "voicemeter" Or "voicemeter8" Or "conhost") Then
+                    'If proc.ToString.Contains("Discord" Or "ts3client_win64" Or "GameOverlayUI" Or "Steam" Or "SteamService" Or "steamwebhelper" Or "Dxtory" Or "Dxtory64" Or "nvcontainer" Or "NVDisplay.Container" Or "NVIDIA RTX Voice" Or "NVIDIA Share" Or "nvsphelper64" Or "voicemeter" Or "voicemeter8" Or "conhost") Then
+                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
+                    'End If
+                    '' compress into one line
+                    If proc.ToString.Contains("ts3client_win64") Then
                         proc.ProcessorAffinity = New IntPtr(n - 1)
                     End If
-                    ' compress into one line
-                    'If proc.ToString.Contains("ts3client_win64") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("GameOverlayUI") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("Steam") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("SteamService") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("steamwebhelper") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("Dxtory") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("Dxtory64") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("nvcontainer") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("NVDisplay.Container") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("NVIDIA RTX Voice") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("NVIDIA Share") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("NVIDIA Web Helper") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("nvsphelper64") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("voicemeter") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("voicemeter8") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    'If proc.ToString.Contains("conhost") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
+                    If proc.ToString.Contains("GameOverlayUI") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("Steam") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("SteamService") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("steamwebhelper") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("Dxtory") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("Dxtory64") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("nvcontainer") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("NVDisplay.Container") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("NVIDIA RTX Voice") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("NVIDIA Share") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("NVIDIA Web Helper") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("nvsphelper64") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("voicemeter") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("voicemeter8") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
+                    If proc.ToString.Contains("conhost") Then
+                        proc.ProcessorAffinity = New IntPtr(n - 1)
+                    End If
 
                 End If
             Catch ex As Exception
@@ -247,7 +268,7 @@ Public Class Form1
 
         End Try
     End Sub
-    Private Sub rfspcl_Click(sender As Object, e As EventArgs) Handles rfspcl.Click
+    Private Sub Rfspcl_Click(sender As Object, e As EventArgs) Handles rfspcl.Click
         pclist.Items.Clear()
         For Each proc In Process.GetProcesses
             Try
@@ -259,7 +280,7 @@ Public Class Form1
             End Try
         Next
     End Sub
-    Private Sub fcp2_Click(sender As Object, e As EventArgs) Handles fcp2.Click
+    Private Sub Fcp2_Click(sender As Object, e As EventArgs) Handles fcp2.Click
         Dim total As Integer
         total = 0
         For Each item In cs.CheckedItems
@@ -396,18 +417,22 @@ Public Class Form1
             If proc.ProcessName = "aces" Then
                 If proc.Responding = False Then
                     ' attempt to kill the process
-                    proc.Kill()
+
+                    'proc.Kill()
 
                     If ExBoost = True Then
-                        MessageBox.Show("Seems like War Thunder had a Panic Attack, we forced it closed. It also seems like the extra boost isnt working out for your pc, please disable.")
+                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. It also seems like the extra boost isnt working out for your pc, please disable.")
                     Else
-                        MessageBox.Show("Seems like War Thunder had a Panic Attack, we forced it closed.")
+                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed.")
                     End If
                 End If
             End If
         Next
     End Sub
+    Private Sub WatchDogWaiter_Tick(sender As Object, e As EventArgs) Handles WatchDogWaiter.Tick
 
+        WatchDogTxt.Text = "Watch Dog: Frozen | Waiting before panic attac: " & wdtimer_counter.ToString
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
     End Sub
