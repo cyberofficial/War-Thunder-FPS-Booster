@@ -10,6 +10,14 @@ Download: https://github.com/cyberofficial/War-Thunder-FPS-Booster/releases
 * Watch Dog Timer: Will watch and check if the game is frozen or not, if frozen, the game will be force closed and the system will return to normal.
 
 
+## What does it do exactly?
+
+As you see here, we have a busy system.
+![](https://i.imgur.com/yWehK9X.png)
+
+When the program boosts war thunder, all those extra cores will be reserved for war thunder.
+![](https://i.imgur.com/7mhYufT.png)
+
 -------
 
 ## You can see the reasults below.
