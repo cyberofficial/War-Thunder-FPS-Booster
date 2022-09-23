@@ -45,13 +45,18 @@ Public Class Form1
     '    Me.KeyPreview = True
     'End Sub
 
-
     ' ----------------------------------
     '   Use this form loading for code
     ' ----------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         Me.KeyPreview = True
+
+        splash.ShowDialog()
+
+        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
+            MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
+            Application.Exit()
+        End If
 
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
@@ -147,10 +152,6 @@ Public Class Form1
             Try
                 ' Exclusion List
                 BoostWorker.ReportProgress(67, "Modifying System" & vbNewLine & "Please don't exit the app.")
-                'If proc.ToString.Contains("aces" Or "launcher" Or "explorer" Or "wtfpsbooster" Or "EasyAntiCheat" Or "audiodg" Or "eac_launcher") Then
-                '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                'End If
-                ' Compress into one line.
                 If proc.ToString.Contains("aces") Then
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
@@ -170,10 +171,6 @@ Public Class Form1
                     proc.ProcessorAffinity = New IntPtr(n - 1)
                 End If
                 If ExBoost = False Then
-                    'If proc.ToString.Contains("Discord" Or "ts3client_win64" Or "GameOverlayUI" Or "Steam" Or "SteamService" Or "steamwebhelper" Or "Dxtory" Or "Dxtory64" Or "nvcontainer" Or "NVDisplay.Container" Or "NVIDIA RTX Voice" Or "NVIDIA Share" Or "nvsphelper64" Or "voicemeter" Or "voicemeter8" Or "conhost") Then
-                    '    proc.ProcessorAffinity = New IntPtr(n - 1)
-                    'End If
-                    '' compress into one line
                     If proc.ToString.Contains("ts3client_win64") Then
                         proc.ProcessorAffinity = New IntPtr(n - 1)
                     End If
@@ -418,12 +415,12 @@ Public Class Form1
                 If proc.Responding = False Then
                     ' attempt to kill the process
 
-                    'proc.Kill()
+                    proc.Kill()
 
                     If ExBoost = True Then
-                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. It also seems like the extra boost isnt working out for your pc, please disable.")
+                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. It also seems like the extra boost was ticked, try again with out extra boost. IF problem still exists please contact me on reddit [user/cyb3rofficial] or github [github.com/cyberofficial]. Possible fix: Try increasing the watch dog timer.")
                     Else
-                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed.")
+                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. Possible fix: Try increasing the watch dog timer.")
                     End If
                 End If
             End If
@@ -440,5 +437,4 @@ Public Class Form1
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         WatchDog_Settings.ShowDialog()
     End Sub
-
 End Class

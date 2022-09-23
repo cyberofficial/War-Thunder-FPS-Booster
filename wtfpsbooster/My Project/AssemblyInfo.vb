@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Boost your FPS in the Game War Thunder")>
 <Assembly: AssemblyCompany("Cyber Apps")>
 <Assembly: AssemblyProduct("WTFPSBooster")>
-<Assembly: AssemblyCopyright("Copyright © 2016-2020")>
+<Assembly: AssemblyCopyright("Copyright © 2016-2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,7 +31,7 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.1.0.28")>
-<Assembly: AssemblyFileVersion("2.1.0.28")>
+<Assembly: AssemblyVersion("2.19.0.44")>
+<Assembly: AssemblyFileVersion("2.19.0.44")>
 
 <Assembly: NeutralResourcesLanguageAttribute("en-US")>
