@@ -11,17 +11,17 @@
 
     Private Sub start_app_Click(sender As Object, e As EventArgs) Handles start_app.Click
         If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
-            MessageBox.Show("Please run as admin!")
+            Dim unused1 = MessageBox.Show("Please run as admin!")
         ElseIf iagree_box.Checked = True Then
-            Me.Close()
+            Close()
         ElseIf iagree_box.Checked = False Then
-            MessageBox.Show("Please agree.")
+            Dim unused = MessageBox.Show("Please agree.")
         End If
 
     End Sub
 
     Private Sub exit_app_Click(sender As Object, e As EventArgs) Handles exit_app.Click
-        Me.Close()
+        Close()
         Application.Exit()
     End Sub
 End Class

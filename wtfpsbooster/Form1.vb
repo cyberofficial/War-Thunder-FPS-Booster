@@ -1,20 +1,20 @@
 ﻿Imports System.Runtime.InteropServices
 Public Class Form1
-    Dim corecount As Integer
-    Dim status As String
-    Dim total As Integer
-    Dim cores As Integer
-    Dim n As Integer
-    Dim EAC_on As Boolean = False
-    Dim launcher1() As Process
-    Dim aces1() As Process
-    Dim eac() As Process
-    Dim IsWtRunning As Boolean
-    Dim IsLRunning As Boolean
-    Dim DidWtClose As Boolean
-    Dim ExBoost As Boolean
-    Dim WatchDogTimer As Integer
-    Dim wdtimer_counter As Integer
+    Private corecount As Integer
+    Private ReadOnly status As String
+    Private total As Integer
+    Private cores As Integer
+    Private n As Integer
+    Private EAC_on As Boolean = False
+    Private launcher1() As Process
+    Private aces1() As Process
+    Private eac() As Process
+    Private IsWtRunning As Boolean
+    Private IsLRunning As Boolean
+    Private DidWtClose As Boolean
+    Private ExBoost As Boolean
+    Private WatchDogTimer As Integer
+    Private ReadOnly wdtimer_counter As Integer
 
     Public Const WM_NCLBUTTONDOWN As Integer = &HA1
     Public Const HT_CAPTION As Integer = &H2
@@ -29,8 +29,8 @@ Public Class Form1
 
     Private Sub Form1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, LeftPanel.MouseDown, pcstatus_txt.MouseDown, wtstatus.MouseDown, WatchDogTxt.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            ReleaseCapture()
-            SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0)
+            Dim unused1 = ReleaseCapture()
+            Dim unused = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0)
         End If
     End Sub
 
@@ -49,19 +49,19 @@ Public Class Form1
     '   Use this form loading for code
     ' ----------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.KeyPreview = True
+        KeyPreview = True
 
-        splash.ShowDialog()
+        'splash.ShowDialog()
 
-        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
-            MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
-            Application.Exit()
-        End If
+        'If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
+        '    MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
+        '    Application.Exit()
+        'End If
 
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
             corecount += 1
-            cs.Items.Add(corecount - 1)
+            Dim unused1 = cs.Items.Add(corecount - 1)
         End While
         MainControlPanel.TabPages.Remove(TabPage2)
 
@@ -78,7 +78,7 @@ Public Class Form1
         ' ---------------------------------------------------------------
 
         If Application.ExecutablePath.Contains("wtfpsbooster.exe") = False Then
-            MessageBox.Show("It seems like the file name was changed, please rename back to: wtfpsbooster.exe" & vbNewLine & "The name is hard coded to the filename and this helps makes things easier, You can always make a shortcut though :)")
+            Dim unused = MessageBox.Show("It seems like the file name was changed, please rename back to: wtfpsbooster.exe" & vbNewLine & "The name is hard coded to the filename and this helps makes things easier, You can always make a shortcut though :)")
             Application.Exit()
         End If
     End Sub
@@ -117,7 +117,7 @@ Public Class Form1
         total = 0
         EAC_on = True
         cores = System.Environment.ProcessorCount.ToString
-        n = 2 ^ cores - 1
+        n = (2 ^ cores) - 1
 
         ' Prepare all applications by setting a value to the lowest first.
 
@@ -147,7 +147,7 @@ Public Class Form1
             End Try
         Next
         cores = System.Environment.ProcessorCount.ToString
-        n = 2 ^ cores - 1
+        n = (2 ^ cores) - 1
         For Each proc In Process.GetProcesses
             Try
                 ' Exclusion List
@@ -230,12 +230,10 @@ Public Class Form1
 
     End Sub
     Private Sub BoostWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BoostWorker.RunWorkerCompleted
-        If ExBoost = False Then
-            pcstatus_txt.Text = "War Thunder Status: Boosted" & vbNewLine & "PC Status: Most resources are dedicated to War Thunder"
-        Else
-            pcstatus_txt.Text = "War Thunder Status: Extra Boosted" & vbNewLine & "PC Status: Almost everything is slowed for War Thunder"
-        End If
-        Me.Enabled = True
+        pcstatus_txt.Text = If(ExBoost = False,
+            "War Thunder Status: Boosted" & vbNewLine & "PC Status: Most resources are dedicated to War Thunder",
+            "War Thunder Status: Extra Boosted" & vbNewLine & "PC Status: Almost everything is slowed for War Thunder")
+        Enabled = True
     End Sub
     Private Sub RestoreWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RestoreWorker.DoWork
         For Each proc In Process.GetProcesses
@@ -252,13 +250,13 @@ Public Class Form1
     End Sub
     Private Sub RestoreWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles RestoreWorker.RunWorkerCompleted
         pcstatus_txt.Text = "PC Status: Normal"
-        Me.Enabled = True
+        Enabled = True
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles RestoreBtn.Click
-        Me.Enabled = False
+        Enabled = False
         Try
             cores = System.Environment.ProcessorCount.ToString
-            n = 2 ^ cores - 1
+            n = (2 ^ cores) - 1
             RestoreWorker.RunWorkerAsync()
 
         Catch ex As Exception
@@ -270,7 +268,7 @@ Public Class Form1
         For Each proc In Process.GetProcesses
             Try
                 If Not pclist.Items.Contains(proc.ProcessName) Then
-                    pclist.Items.Add(proc.ProcessName)
+                    Dim unused = pclist.Items.Add(proc.ProcessName)
                 End If
             Catch ex As Exception
 
@@ -345,7 +343,7 @@ Public Class Form1
                     WatchDogTxt.Text = "Watch Dog: Offline"
                     Try
                         cores = System.Environment.ProcessorCount.ToString
-                        n = 2 ^ cores - 1
+                        n = (2 ^ cores) - 1
                         RestoreWorker.RunWorkerAsync()
                     Catch ex As Exception
                     End Try
@@ -418,9 +416,9 @@ Public Class Form1
                     proc.Kill()
 
                     If ExBoost = True Then
-                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. It also seems like the extra boost was ticked, try again with out extra boost. IF problem still exists please contact me on reddit [user/cyb3rofficial] or github [github.com/cyberofficial]. Possible fix: Try increasing the watch dog timer.")
+                        Dim unused1 = MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. It also seems like the extra boost was ticked, try again with out extra boost. IF problem still exists please contact me on reddit [user/cyb3rofficial] or github [github.com/cyberofficial]. Possible fix: Try increasing the watch dog timer.")
                     Else
-                        MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. Possible fix: Try increasing the watch dog timer.")
+                        Dim unused = MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. Possible fix: Try increasing the watch dog timer.")
                     End If
                 End If
             End If
@@ -431,10 +429,14 @@ Public Class Form1
         WatchDogTxt.Text = "Watch Dog: Frozen | Waiting before panic attac: " & wdtimer_counter.ToString
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
+        WindowState = System.Windows.Forms.FormWindowState.Minimized
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        WatchDog_Settings.ShowDialog()
+        Dim unused = WatchDog_Settings.ShowDialog()
+    End Sub
+
+    Private Sub ignorelist_btn_Click(sender As Object, e As EventArgs) Handles ignorelist_btn.Click
+        Dim unused = ignorelistform.ShowDialog()
     End Sub
 End Class

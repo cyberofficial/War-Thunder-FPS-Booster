@@ -48,9 +48,10 @@ Partial Class Form1
         Me.WatchDog = New System.Windows.Forms.Timer(Me.components)
         Me.WatchDogTxt = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.BoostWorker_New_25 = New System.ComponentModel.BackgroundWorker()
         Me.WatchDogWaiter = New System.Windows.Forms.Timer(Me.components)
+        Me.ignorelist_btn = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.MainControlPanel.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -76,12 +77,12 @@ Partial Class Form1
         Me.InfoBox.BackColor = System.Drawing.Color.Linen
         Me.InfoBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.InfoBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.0!)
-        Me.InfoBox.Location = New System.Drawing.Point(0, 153)
+        Me.InfoBox.Location = New System.Drawing.Point(0, 204)
         Me.InfoBox.Multiline = True
         Me.InfoBox.Name = "InfoBox"
         Me.InfoBox.ReadOnly = True
         Me.InfoBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.InfoBox.Size = New System.Drawing.Size(322, 334)
+        Me.InfoBox.Size = New System.Drawing.Size(322, 283)
         Me.InfoBox.TabIndex = 9
         Me.InfoBox.Text = resources.GetString("InfoBox.Text")
         '
@@ -101,7 +102,6 @@ Partial Class Form1
         Me.BoostBtn.TabIndex = 8
         Me.BoostBtn.Text = "Re-Boost"
         Me.BoostBtn.UseVisualStyleBackColor = False
-        Me.BoostBtn.Visible = False
         '
         'wtstatus
         '
@@ -156,7 +156,7 @@ Partial Class Form1
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(743, 333)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Main Settings"
@@ -168,7 +168,7 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.GroupBox3)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(743, 333)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Advanced Settings"
@@ -258,6 +258,7 @@ Partial Class Form1
         '
         Me.LeftPanel.BackColor = System.Drawing.Color.LightCoral
         Me.LeftPanel.Controls.Add(Me.InfoBox)
+        Me.LeftPanel.Controls.Add(Me.ignorelist_btn)
         Me.LeftPanel.Controls.Add(Me.RestoreBtn)
         Me.LeftPanel.Controls.Add(Me.ExtraBoost)
         Me.LeftPanel.Controls.Add(Me.BoostBtn)
@@ -283,7 +284,6 @@ Partial Class Form1
         Me.ExtraBoost.TabIndex = 10
         Me.ExtraBoost.Text = "Extra Boost"
         Me.ExtraBoost.UseVisualStyleBackColor = False
-        Me.ExtraBoost.Visible = False
         '
         'Button3
         '
@@ -334,6 +334,30 @@ Partial Class Form1
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'BoostWorker_New_25
+        '
+        '
+        'WatchDogWaiter
+        '
+        Me.WatchDogWaiter.Interval = 1000
+        '
+        'ignorelist_btn
+        '
+        Me.ignorelist_btn.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.ignorelist_btn.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ignorelist_btn.FlatAppearance.BorderColor = System.Drawing.Color.Blue
+        Me.ignorelist_btn.FlatAppearance.BorderSize = 5
+        Me.ignorelist_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.ignorelist_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.ignorelist_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ignorelist_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ignorelist_btn.Location = New System.Drawing.Point(0, 153)
+        Me.ignorelist_btn.Name = "ignorelist_btn"
+        Me.ignorelist_btn.Size = New System.Drawing.Size(322, 51)
+        Me.ignorelist_btn.TabIndex = 11
+        Me.ignorelist_btn.Text = "Ignore List"
+        Me.ignorelist_btn.UseVisualStyleBackColor = False
+        '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.wtfpsbooster.My.Resources.Resources.gearcog
@@ -343,13 +367,6 @@ Partial Class Form1
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 9
         Me.PictureBox1.TabStop = False
-        '
-        'BoostWorker_New_25
-        '
-        '
-        'WatchDogWaiter
-        '
-        Me.WatchDogWaiter.Interval = 1000
         '
         'Form1
         '
@@ -412,4 +429,5 @@ Partial Class Form1
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents BoostWorker_New_25 As System.ComponentModel.BackgroundWorker
     Friend WithEvents WatchDogWaiter As Timer
+    Friend WithEvents ignorelist_btn As Button
 End Class
