@@ -1,6 +1,7 @@
 # Welcome to War Thunder FPS Booster!
 ## This Program will allow you to squeeze every last drop of fps out of war thunder.
 ### EAC Tested and Safe
+## Secuirty Scan [![DevSkim](https://github.com/cyberofficial/War-Thunder-FPS-Booster/actions/workflows/devskim.yml/badge.svg)](https://github.com/cyberofficial/War-Thunder-FPS-Booster/actions/workflows/devskim.yml)
 
 Download: https://github.com/cyberofficial/War-Thunder-FPS-Booster/releases
 
