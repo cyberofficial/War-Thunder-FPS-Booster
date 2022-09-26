@@ -51,12 +51,12 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
 
-        'splash.ShowDialog()
+        splash.ShowDialog()
 
-        'If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
-        '    MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
-        '    Application.Exit()
-        'End If
+        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
+            MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
+            Application.Exit()
+        End If
 
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
@@ -433,10 +433,17 @@ Public Class Form1
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        Dim unused = WatchDog_Settings.ShowDialog()
+        WatchDog_Settings.ShowDialog()
     End Sub
 
     Private Sub ignorelist_btn_Click(sender As Object, e As EventArgs) Handles ignorelist_btn.Click
-        Dim unused = ignorelistform.ShowDialog()
+        ignorelistform.ShowDialog()
+    End Sub
+
+    Private Sub start_btn_Click(sender As Object, e As EventArgs) Handles start_btn.Click
+        MessageBox.Show("Please make sure to close out war thunder first before closing this program. Other wise, things will be super slow and a restart of the pc will be required.")
+        wtstatus.Text = "Waiting for Launcher..."
+        tauto.Enabled = True
+        start_btn.Visible = False
     End Sub
 End Class
