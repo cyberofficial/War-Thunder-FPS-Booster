@@ -27,22 +27,7 @@
     End Sub
 
     Private Sub req_admin4_btn_Click(sender As Object, e As EventArgs) Handles req_admin4_btn.Click
-        'Dim proc As New ProcessStartInfo()
-
-        'proc.UseShellExecute = True
-        'proc.WorkingDirectory = Environment.CurrentDirectory
-        'proc.FileName = Application.ExecutablePath
-        'proc.Verb = "runas"
-
-        'Try
-        '    'MessageBox.Show(Environment.CurrentDirectory + "\runas_admin.cmd")
-        '    Process.Start(Environment.CurrentDirectory + "\runas_admin.cmd")
-        'Catch
-        '    Exit Sub
-        'End Try
         Try
-            'MessageBox.Show(Environment.CurrentDirectory + "\runas_admin.cmd")
-            'File.Create(Environment.CurrentDirectory + "\runas_admin.cmd").Dispose()
             Dim FILE_NAME As String = Environment.CurrentDirectory + "\runas_admin.vbs"
             Dim i As Integer
             Dim aryText(7) As String
@@ -66,7 +51,5 @@
         Catch ex As Exception
 
         End Try
-
-        'Application.Exit() ' Kill the old process
     End Sub
 End Class

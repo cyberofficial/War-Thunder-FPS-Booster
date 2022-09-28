@@ -121,9 +121,12 @@
     <value>By using this program, you acknowledge that is not official Gaijin software.
 This program uses built in windows tools to improve any application.
 Normal users do not have access normally to such tools and this program takes control of such tools.
-This tool is not advantage software (Cheatware.)
 
-You must run this program as Admin to grant such ability.</value>
+You must run this program as Admin to grant such ability.
+
+This tool is not advantage software (Cheatware.)
+This tool is provided "as-is" and is 100% free and open sourced. Any sites trying to sell the software is a scam.
+The official website is GitHub, affiliated websites will also be listed on GitHub.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

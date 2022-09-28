@@ -28,11 +28,13 @@ Partial Class ignorelistform
         Me.closebtn = New System.Windows.Forms.Button()
         Me.removebtn = New System.Windows.Forms.Button()
         Me.ignorelistbox = New System.Windows.Forms.ListBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.save_ignore_btn = New System.Windows.Forms.Button()
         Me.OpenFileBox = New System.Windows.Forms.OpenFileDialog()
         Me.add_running_btn = New System.Windows.Forms.Button()
         Me.running_listbox = New System.Windows.Forms.ComboBox()
         Me.RefreshProc = New System.Windows.Forms.Label()
+        Me.add_common_items = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -62,9 +64,9 @@ Partial Class ignorelistform
         Me.find_program_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
         Me.find_program_btn.Location = New System.Drawing.Point(274, 229)
         Me.find_program_btn.Name = "find_program_btn"
-        Me.find_program_btn.Size = New System.Drawing.Size(137, 40)
+        Me.find_program_btn.Size = New System.Drawing.Size(150, 40)
         Me.find_program_btn.TabIndex = 2
-        Me.find_program_btn.Text = "Find Program"
+        Me.find_program_btn.Text = "🔍 Search"
         Me.find_program_btn.UseVisualStyleBackColor = True
         '
         'closebtn
@@ -72,7 +74,7 @@ Partial Class ignorelistform
         Me.closebtn.BackColor = System.Drawing.Color.Red
         Me.closebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.closebtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!)
-        Me.closebtn.Location = New System.Drawing.Point(643, -4)
+        Me.closebtn.Location = New System.Drawing.Point(636, -3)
         Me.closebtn.Name = "closebtn"
         Me.closebtn.Size = New System.Drawing.Size(40, 40)
         Me.closebtn.TabIndex = 3
@@ -84,7 +86,7 @@ Partial Class ignorelistform
         Me.removebtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
         Me.removebtn.Location = New System.Drawing.Point(274, 275)
         Me.removebtn.Name = "removebtn"
-        Me.removebtn.Size = New System.Drawing.Size(205, 40)
+        Me.removebtn.Size = New System.Drawing.Size(150, 69)
         Me.removebtn.TabIndex = 2
         Me.removebtn.Text = "Remove Highlighted"
         Me.removebtn.UseVisualStyleBackColor = True
@@ -97,19 +99,19 @@ Partial Class ignorelistform
         Me.ignorelistbox.ItemHeight = 16
         Me.ignorelistbox.Location = New System.Drawing.Point(12, 183)
         Me.ignorelistbox.Name = "ignorelistbox"
-        Me.ignorelistbox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple
-        Me.ignorelistbox.Size = New System.Drawing.Size(256, 196)
+        Me.ignorelistbox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
+        Me.ignorelistbox.Size = New System.Drawing.Size(256, 180)
         Me.ignorelistbox.TabIndex = 4
         '
-        'Button2
+        'save_ignore_btn
         '
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
-        Me.Button2.Location = New System.Drawing.Point(574, 339)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(93, 40)
-        Me.Button2.TabIndex = 2
-        Me.Button2.Text = "Save List"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.save_ignore_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.save_ignore_btn.Location = New System.Drawing.Point(478, 323)
+        Me.save_ignore_btn.Name = "save_ignore_btn"
+        Me.save_ignore_btn.Size = New System.Drawing.Size(189, 40)
+        Me.save_ignore_btn.TabIndex = 2
+        Me.save_ignore_btn.Text = "💾 Save List"
+        Me.save_ignore_btn.UseVisualStyleBackColor = True
         '
         'OpenFileBox
         '
@@ -121,9 +123,9 @@ Partial Class ignorelistform
         Me.add_running_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
         Me.add_running_btn.Location = New System.Drawing.Point(274, 183)
         Me.add_running_btn.Name = "add_running_btn"
-        Me.add_running_btn.Size = New System.Drawing.Size(137, 40)
+        Me.add_running_btn.Size = New System.Drawing.Size(40, 33)
         Me.add_running_btn.TabIndex = 2
-        Me.add_running_btn.Text = "Add Running"
+        Me.add_running_btn.Text = "<<"
         Me.add_running_btn.UseVisualStyleBackColor = True
         '
         'running_listbox
@@ -131,11 +133,11 @@ Partial Class ignorelistform
         Me.running_listbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.running_listbox.DropDownWidth = 400
         Me.running_listbox.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.running_listbox.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.running_listbox.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!)
         Me.running_listbox.FormattingEnabled = True
-        Me.running_listbox.Location = New System.Drawing.Point(417, 188)
+        Me.running_listbox.Location = New System.Drawing.Point(320, 183)
         Me.running_listbox.Name = "running_listbox"
-        Me.running_listbox.Size = New System.Drawing.Size(223, 32)
+        Me.running_listbox.Size = New System.Drawing.Size(311, 33)
         Me.running_listbox.Sorted = True
         Me.running_listbox.TabIndex = 6
         '
@@ -144,23 +146,45 @@ Partial Class ignorelistform
         Me.RefreshProc.AutoSize = True
         Me.RefreshProc.BackColor = System.Drawing.Color.Transparent
         Me.RefreshProc.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!)
-        Me.RefreshProc.Location = New System.Drawing.Point(637, 187)
+        Me.RefreshProc.Location = New System.Drawing.Point(628, 181)
         Me.RefreshProc.Name = "RefreshProc"
         Me.RefreshProc.Size = New System.Drawing.Size(46, 31)
         Me.RefreshProc.TabIndex = 7
         Me.RefreshProc.Text = "🔃"
+        '
+        'add_common_items
+        '
+        Me.add_common_items.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.add_common_items.Location = New System.Drawing.Point(12, 137)
+        Me.add_common_items.Name = "add_common_items"
+        Me.add_common_items.Size = New System.Drawing.Size(256, 40)
+        Me.add_common_items.TabIndex = 8
+        Me.add_common_items.Text = "Add Common Processes"
+        Me.add_common_items.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.Label3.Location = New System.Drawing.Point(474, 296)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(193, 24)
+        Me.Label3.TabIndex = 9
+        Me.Label3.Text = "⚠️ Make sure to save!"
         '
         'ignorelistform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(679, 386)
+        Me.ClientSize = New System.Drawing.Size(672, 372)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.add_common_items)
         Me.Controls.Add(Me.running_listbox)
         Me.Controls.Add(Me.RefreshProc)
         Me.Controls.Add(Me.ignorelistbox)
         Me.Controls.Add(Me.closebtn)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.save_ignore_btn)
         Me.Controls.Add(Me.removebtn)
         Me.Controls.Add(Me.add_running_btn)
         Me.Controls.Add(Me.find_program_btn)
@@ -182,9 +206,11 @@ Partial Class ignorelistform
     Friend WithEvents closebtn As Button
     Friend WithEvents removebtn As Button
     Friend WithEvents ignorelistbox As ListBox
-    Friend WithEvents Button2 As Button
+    Friend WithEvents save_ignore_btn As Button
     Friend WithEvents OpenFileBox As OpenFileDialog
     Friend WithEvents add_running_btn As Button
     Friend WithEvents running_listbox As ComboBox
     Friend WithEvents RefreshProc As Label
+    Friend WithEvents add_common_items As Button
+    Friend WithEvents Label3 As Label
 End Class
