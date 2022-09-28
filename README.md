@@ -34,4 +34,4 @@ When the program boosts war thunder, all those extra cores will be reserved for 
 ![](https://i.imgur.com/v6Bnhui.png)
 
 ### Application UI
-![](https://i.imgur.com/eie4LSY.png)
+![](https://i.imgur.com/79TMNaL.png)
