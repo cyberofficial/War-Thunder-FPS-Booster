@@ -39,12 +39,12 @@ Public Class Form1
     ' ----------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
-        Dim unused3 = splash.ShowDialog()
+        'Dim unused3 = splash.ShowDialog()
 
-        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
-            Dim unused2 = MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
-            Application.Exit()
-        End If
+        'If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
+        '    Dim unused2 = MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
+        '    Application.Exit()
+        'End If
 
         Try
             ignorelistform.ignorelistbox.Items.Clear()
@@ -369,9 +369,10 @@ Step 5: You are all set, click Launch on your Launcher and the game should boost
     End Sub
 
     Private Sub chang_log_Click(sender As Object, e As EventArgs) Handles chang_log.Click
-        Dim unused = MessageBox.Show("Changes for 2.19.0.501:
+        Dim unused = MessageBox.Show("Changes for 2.19.0.504:
 * Removed Extra Boost. Extra boost was removed and replaced with ignore list.
 * Ignore list. With the removale of Extra boost, decided to make the program have extra boost by default. To have the same effect as extra boost being diabled, click on Ignore List, then add Common Names.
+* Fixed an issue with Ignore List showing errors with an empty list.
 ")
     End Sub
 
