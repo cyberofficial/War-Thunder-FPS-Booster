@@ -1,6 +1,6 @@
 ﻿Public Class ignorelistform
     Private Sub closebtn_Click(sender As Object, e As EventArgs) Handles closebtn.Click
-        Hide()
+        Me.Close()
         ignorelistbox.Items.Clear()
         For Each item In My.Settings.ignore_list
             Dim unused4 = ignorelistbox.Items.Add(item)
