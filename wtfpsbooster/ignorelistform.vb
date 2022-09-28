@@ -8,10 +8,15 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles find_program_btn.Click
-        Dim unused1 = OpenFileBox.ShowDialog()
-        If ignorelistbox.Items.Contains(System.IO.Path.GetFileNameWithoutExtension(OpenFileBox.FileName)) = False And OpenFileBox.FileName.ToString = "" = False Then
-            Dim unused = ignorelistbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(OpenFileBox.FileName))
-        End If
+        Try
+            Dim unused1 = OpenFileBox.ShowDialog()
+            If ignorelistbox.Items.Contains(System.IO.Path.GetFileNameWithoutExtension(OpenFileBox.FileName)) = False And OpenFileBox.FileName.ToString = "" = False Then
+                Dim unused = ignorelistbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(OpenFileBox.FileName))
+            End If
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub add_running_btn_Click(sender As Object, e As EventArgs) Handles add_running_btn.Click
@@ -27,8 +32,11 @@
     End Sub
 
     Private Sub removebtn_Click(sender As Object, e As EventArgs) Handles removebtn.Click
+        Try
+            ignorelistbox.Items.Remove(ignorelistbox.SelectedItem)
+        Catch ex As Exception
 
-        ignorelistbox.Items.Remove(ignorelistbox.SelectedItem)
+        End Try
 
     End Sub
 
@@ -43,16 +51,19 @@
     End Sub
 
     Private Sub save_ignore_btn_Click(sender As Object, e As EventArgs) Handles save_ignore_btn.Click
-        If My.Settings.ignore_list Is Nothing Then
-            My.Settings.ignore_list = New System.Collections.Specialized.StringCollection()
-        End If
+        Try
+            If My.Settings.ignore_list Is Nothing Then
+                My.Settings.ignore_list = New System.Collections.Specialized.StringCollection()
+            End If
 
-        My.Settings.ignore_list.Clear()
-        For Each item In ignorelistbox.Items
-            Dim unused = My.Settings.ignore_list.Add(item)
-        Next
-        My.Settings.Save()
+            My.Settings.ignore_list.Clear()
+            For Each item In ignorelistbox.Items
+                Dim unused = My.Settings.ignore_list.Add(item)
+            Next
+            My.Settings.Save()
+        Catch ex As Exception
 
+        End Try
     End Sub
 
     Private Sub add_common_items_Click(sender As Object, e As EventArgs) Handles add_common_items.Click
