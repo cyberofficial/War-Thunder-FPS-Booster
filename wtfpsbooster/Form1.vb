@@ -15,6 +15,7 @@ Public Class Form1
     Private ReadOnly ExBoost As Boolean
     Private WatchDogTimer As Integer
     Private ReadOnly wdtimer_counter As Integer
+
     Public Const WM_NCLBUTTONDOWN As Integer = &HA1
     Public Const HT_CAPTION As Integer = &H2
 
@@ -38,17 +39,22 @@ Public Class Form1
     ' ----------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
-        Dim debugbp As Boolean
         Dim unused3 = splash.ShowDialog()
-        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False And debugbp = False Then
+
+        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
             Dim unused2 = MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
             Application.Exit()
         End If
 
-        ignorelistform.ignorelistbox.Items.Clear()
-        For Each item In My.Settings.ignore_list
-            Dim unused4 = ignorelistform.ignorelistbox.Items.Add(item)
-        Next
+        Try
+            ignorelistform.ignorelistbox.Items.Clear()
+            For Each item In My.Settings.ignore_list
+                Dim unused4 = ignorelistform.ignorelistbox.Items.Add(item)
+            Next
+        Catch ex As Exception
+
+        End Try
+
 
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
@@ -352,7 +358,7 @@ Public Class Form1
     End Sub
 
     Private Sub howtouse_btn_Click(sender As Object, e As EventArgs) Handles howtouse_btn.Click
-        MessageBox.Show("Please note, results may vary depending on the system.
+        Dim unused = MessageBox.Show("Please note, results may vary depending on the system.
 How to use the program:
 Step 1: Make sure War Thunder + the Launcher are closed, if they are open, close them now and relaunch this program.
 Step 2: Launch War Thunder’s Launcher
@@ -363,21 +369,21 @@ Step 5: You are all set, click Launch on your Launcher and the game should boost
     End Sub
 
     Private Sub chang_log_Click(sender As Object, e As EventArgs) Handles chang_log.Click
-        MessageBox.Show("Changes for 2.19.0.453:
+        Dim unused = MessageBox.Show("Changes for 2.19.0.501:
 * Removed Extra Boost. Extra boost was removed and replaced with ignore list.
 * Ignore list. With the removale of Extra boost, decided to make the program have extra boost by default. To have the same effect as extra boost being diabled, click on Ignore List, then add Common Names.
 ")
     End Sub
 
     Private Sub githublogo_Click(sender As Object, e As EventArgs) Handles githublogo.Click
-        Process.Start("https://github.com/cyberofficial/War-Thunder-FPS-Booster/issues")
+        Dim unused = Process.Start("https://github.com/cyberofficial/War-Thunder-FPS-Booster/issues")
     End Sub
 
     Private Sub redditlogo_Click(sender As Object, e As EventArgs) Handles redditlogo.Click
-        Process.Start("https://www.reddit.com/user/cyb3rofficial")
+        Dim unused = Process.Start("https://www.reddit.com/user/cyb3rofficial")
     End Sub
 
     Private Sub paypallogo_Click(sender As Object, e As EventArgs) Handles paypallogo.Click
-        Process.Start("https://www.paypal.com/paypalme/cyberdrive")
+        Dim unused = Process.Start("https://www.paypal.com/paypalme/cyberdrive")
     End Sub
 End Class
