@@ -39,12 +39,12 @@ Public Class Form1
     ' ----------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
-        'Dim unused3 = splash.ShowDialog()
+        Dim unused3 = splash.ShowDialog()
 
-        'If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
-        '    Dim unused2 = MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
-        '    Application.Exit()
-        'End If
+        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
+            Dim unused2 = MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
+            Application.Exit()
+        End If
 
         Try
             ignorelistform.ignorelistbox.Items.Clear()
@@ -169,9 +169,7 @@ Public Class Form1
 
     End Sub
     Private Sub BoostWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BoostWorker.RunWorkerCompleted
-        pcstatus_txt.Text = If(ExBoost = False,
-            "War Thunder Status: Boosted" & vbNewLine & "PC Status: Most resources are dedicated to War Thunder",
-            "War Thunder Status: Extra Boosted" & vbNewLine & "PC Status: Almost everything is slowed for War Thunder")
+        pcstatus_txt.Text = "War Thunder Status: Boosted" & vbNewLine & "PC Status: Most resources are dedicated to War Thunder"
         Enabled = True
     End Sub
     Private Sub RestoreWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RestoreWorker.DoWork
@@ -373,6 +371,7 @@ Step 5: You are all set, click Launch on your Launcher and the game should boost
 * Removed Extra Boost. Extra boost was removed and replaced with ignore list.
 * Ignore list. With the removale of Extra boost, decided to make the program have extra boost by default. To have the same effect as extra boost being diabled, click on Ignore List, then add Common Names.
 * Fixed an issue with Ignore List showing errors with an empty list.
+* Not so red preface warning text.
 ")
     End Sub
 
