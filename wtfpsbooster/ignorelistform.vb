@@ -1,10 +1,16 @@
 ﻿Public Class ignorelistform
     Private Sub closebtn_Click(sender As Object, e As EventArgs) Handles closebtn.Click
+
         Me.Close()
-        ignorelistbox.Items.Clear()
-        For Each item In My.Settings.ignore_list
-            Dim unused4 = ignorelistbox.Items.Add(item)
-        Next
+        Try
+            'ignorelistbox.Items.Clear()
+            For Each item In My.Settings.ignore_list
+                Dim unused4 = ignorelistbox.Items.Add(item)
+            Next
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles find_program_btn.Click
@@ -20,15 +26,20 @@
     End Sub
 
     Private Sub add_running_btn_Click(sender As Object, e As EventArgs) Handles add_running_btn.Click
-        If ignorelistbox.Items.Contains(running_listbox.Text) = False Then
-            Dim unused1 = ignorelistbox.Items.Add(running_listbox.Text)
-        End If
-        running_listbox.Items.Clear()
-        For Each p As Process In Process.GetProcesses()
-            If running_listbox.Items.Contains(p.ProcessName) = False And ignorelistbox.Items.Contains(p.ProcessName) = False Then
-                Dim unused = running_listbox.Items.Add(p.ProcessName)
+        Try
+            If ignorelistbox.Items.Contains(running_listbox.Text) = False Then
+                Dim unused1 = ignorelistbox.Items.Add(running_listbox.Text)
             End If
-        Next
+            running_listbox.Items.Clear()
+            For Each p As Process In Process.GetProcesses()
+                If running_listbox.Items.Contains(p.ProcessName) = False And ignorelistbox.Items.Contains(p.ProcessName) = False Then
+                    Dim unused = running_listbox.Items.Add(p.ProcessName)
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub removebtn_Click(sender As Object, e As EventArgs) Handles removebtn.Click
@@ -62,7 +73,7 @@
             Next
             My.Settings.Save()
         Catch ex As Exception
-
+            My.Settings.ignore_list.Clear()
         End Try
     End Sub
 
