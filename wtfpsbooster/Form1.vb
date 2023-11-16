@@ -190,17 +190,32 @@ Public Class Form1
         pcstatus_txt.Text = "War Thunder Status: Boosted" & vbNewLine & "PC Status: Most resources are dedicated to War Thunder"
         Enabled = True
     End Sub
-    Private Sub RestoreWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RestoreWorker.DoWork
-        Dim cores As Integer = Environment.ProcessorCount
-        Dim affinityMask As Long = 0
-        For i As Integer = 0 To cores - 1
-            affinityMask = affinityMask Or (1L << i)
-        Next
 
-        For Each proc In Process.GetProcesses
+    Private Sub CheckGameProcess()
+        If Not Process.GetProcessesByName("aces").Any() Then
+            ' If the game is no longer running and RestoreWorker is busy, request to stop it
+            If RestoreWorker.IsBusy Then
+                RestoreWorker.CancelAsync()
+            End If
+        End If
+    End Sub
+
+    Private Sub RestoreWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RestoreWorker.DoWork
+        If RestoreWorker.CancellationPending Then
+            e.Cancel = True
+            Return
+        End If
+        Dim affinityMask As Long = CalculateAffinityMask()
+        Dim allProcesses = Process.GetProcesses()
+        Dim totalProcesses As Integer = allProcesses.Length
+        Dim processedCount As Integer = 0
+
+        For Each proc In allProcesses
             Try
                 proc.ProcessorAffinity = New IntPtr(affinityMask)
-                RestoreWorker.ReportProgress(1, "Restoring Processes to Normal...")
+                processedCount += 1
+                Dim progressText As String = $"{processedCount} of {totalProcesses}" + vbNewLine + $"Restoring: {proc.ProcessName}..." + vbNewLine + $"Progress: {CInt((processedCount / totalProcesses) * 100)}%"
+                RestoreWorker.ReportProgress(CInt((processedCount / totalProcesses) * 100), progressText)
             Catch ex As Exception
                 ' Handle exceptions if needed
             End Try
@@ -210,9 +225,21 @@ Public Class Form1
     Private Sub RestoreWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles RestoreWorker.ProgressChanged
         pcstatus_txt.Text = e.UserState.ToString
     End Sub
+
+    Private Function CalculateAffinityMask() As Long
+        Dim cores As Integer = Environment.ProcessorCount
+        Dim affinityMask As Long = 0
+        For i As Integer = 0 To cores - 1
+            affinityMask = affinityMask Or (1L << i)
+        Next
+        Return affinityMask
+    End Function
+
     Private Sub RestoreWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles RestoreWorker.RunWorkerCompleted
         pcstatus_txt.Text = "PC Status: Normal"
+        UpdateStatusText("x Not Running", Color.Red)
         Enabled = True
+        tauto.Enabled = False
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles RestoreBtn.Click
         Enabled = True
@@ -267,88 +294,112 @@ Public Class Form1
 
     Private Sub Tauto_Tick(sender As Object, e As EventArgs) Handles tauto.Tick
         Try
-            launcher1 = Process.GetProcessesByName("launcher")
-            aces1 = Process.GetProcessesByName("aces")
-            eac = Process.GetProcessesByName("EasyAntiCheat")
-            If launcher1.Count > 0 Then
-                EAC_on = False
-                wtstatus.Text = "✓ Launcher"
-                wtstatus.ForeColor = Color.Yellow
-                BoostBtn.Visible = True
-                IsLRunning = True
-            ElseIf aces1.Count > 0 Then
-                wtstatus.Text = "✓ WT is Running"
-                wtstatus.ForeColor = Color.Green
-                IsWtRunning = True
-                DidWtClose = False
-                BoostBtn.Visible = True
-                WatchDog.Enabled = True
-                If eac.Count > 0 Then
-                    If EAC_on = False Then
-                        Try
-                            wtstatus.Text = "✓ EAC Module Loaded"
-                            wtstatus.ForeColor = Color.DarkSlateBlue
-                            BoostWorker.WorkerReportsProgress = True
-                            BoostWorker.RunWorkerAsync()
-                        Catch ex As Exception
-                        End Try
-                    End If
-                End If
-            ElseIf aces1.Count < 1 Then
-                If IsWtRunning = True Then
-                    IsWtRunning = False
-                    DidWtClose = True
-                    WatchDog.Enabled = False
-                    BoostBtn.Visible = False
-                    WatchDogTxt.Text = "Watch Dog: Offline"
-                    Try
-                        Dim cores As Integer = Environment.ProcessorCount
-                        Dim affinityMask As Long = 0
-                        For i As Integer = 0 To cores - 1
-                            affinityMask = affinityMask Or (1L << i)
-                        Next
-                        RestoreWorker.RunWorkerAsync(affinityMask) ' Modify the RunWorkerAsync call as needed
-                    Catch ex As Exception
-                        ' Handle exceptions if needed
-                    End Try
-                End If
-            Else
-                wtstatus.Text = "x Not Running"
-                wtstatus.ForeColor = Color.Red
-            End If
-            If launcher1.Count < 1 Then
-                If IsLRunning = True Then
-                    If IsWtRunning = False Then
-                        If DidWtClose = False Then
-                            wtstatus.Text = "x Launcher was lost."
-                            wtstatus.ForeColor = Color.Red
-                            WatchDogTxt.Text = "Watch Dog: Offline"
-                            BoostBtn.Visible = False
-                        End If
-                        If DidWtClose = True Then
-                            wtstatus.Text = "x Game was Closed, PC Restored..."
-                            Try
-                                Dim cores As Integer = Environment.ProcessorCount
-                                Dim affinityMask As Long = 0
-                                For i As Integer = 0 To cores - 1
-                                    affinityMask = affinityMask Or (1L << i)
-                                Next
-                                RestoreWorker.RunWorkerAsync(affinityMask) ' Modify the RunWorkerAsync call as needed
-                            Catch ex As Exception
-                                ' Handle exceptions if needed
-                            End Try
-                            WatchDogTxt.Text = "Watch Dog: Offline"
-                            wtstatus.ForeColor = Color.Yellow
-                            BoostBtn.Visible = False
-                        End If
-
-                    End If
-                End If
-            End If
+            UpdateProcessStatus()
         Catch ex As Exception
-
+            ' Log the exception or handle it appropriately
         End Try
     End Sub
+
+    Private Sub UpdateProcessStatus()
+        Dim launcherProcesses = Process.GetProcessesByName("launcher")
+        Dim gameProcesses = Process.GetProcessesByName("aces")
+        Dim eacProcesses = Process.GetProcessesByName("EasyAntiCheat")
+
+        If launcherProcesses.Any() Then
+            HandleLauncherRunning()
+        ElseIf gameProcesses.Any() Then
+            HandleGameRunning(eacProcesses)
+        Else
+            HandleGameNotRunning()
+        End If
+
+        If Not launcherProcesses.Any() Then
+            HandleLauncherNotRunning(gameProcesses)
+        End If
+    End Sub
+
+    Private Sub HandleLauncherRunning()
+        EAC_on = False
+        UpdateStatusText("✓ Launcher", Color.Yellow)
+        BoostBtn.Visible = True
+        IsLRunning = True
+    End Sub
+
+    Private Sub HandleGameRunning(eacProcesses As Process())
+        UpdateStatusText("✓ WT is Running", Color.Green)
+        IsWtRunning = True
+        DidWtClose = False
+        BoostBtn.Visible = True
+        WatchDog.Enabled = True
+
+        If eacProcesses.Any() AndAlso Not EAC_on Then
+            Try
+                UpdateStatusText("✓ EAC Module Loaded", Color.DarkSlateBlue)
+                StartBoostWorker()
+            Catch ex As Exception
+                ' Handle exceptions if needed
+            End Try
+        End If
+    End Sub
+
+    Private Sub HandleGameNotRunning()
+        If IsWtRunning Then
+            IsWtRunning = False
+            DidWtClose = True
+            WatchDog.Enabled = False
+            BoostBtn.Visible = False
+            WatchDogTxt.Text = "Watch Dog: Offline"
+            Try
+                RestoreCpuAffinity()
+            Catch ex As Exception
+                ' Handle exceptions if needed
+            End Try
+        Else
+            UpdateStatusText("x Not Running", Color.Red)
+        End If
+    End Sub
+
+    Private Sub HandleLauncherNotRunning(gameProcesses As Process())
+        If IsLRunning AndAlso Not IsWtRunning Then
+            If DidWtClose Then
+                UpdateStatusText("x Game was Closed, PC will be Restored...", Color.Yellow)
+                Try
+                    RestoreCpuAffinity()
+                Catch ex As Exception
+                    ' Handle exceptions if needed
+                End Try
+            Else
+                UpdateStatusText("x Launcher was lost.", Color.Red)
+            End If
+            WatchDogTxt.Text = "Watch Dog: Offline"
+            BoostBtn.Visible = False
+        End If
+    End Sub
+
+    Private Sub UpdateStatusText(text As String, color As Color)
+        wtstatus.Text = text
+        wtstatus.ForeColor = color
+    End Sub
+
+    Private Sub StartBoostWorker()
+        BoostWorker.WorkerReportsProgress = True
+        BoostWorker.RunWorkerAsync()
+    End Sub
+
+    Private Sub RestoreCpuAffinity()
+        Dim cores As Integer = Environment.ProcessorCount
+        Dim affinityMask As Long = CalculateAffinityMask(cores)
+        RestoreWorker.RunWorkerAsync(affinityMask)
+    End Sub
+
+    Private Function CalculateAffinityMask(cores As Integer) As Long
+        Dim affinityMask As Long = 0
+        For i As Integer = 0 To cores - 1
+            affinityMask = affinityMask Or (1L << i)
+        Next
+        Return affinityMask
+    End Function
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Application.Exit()
     End Sub
