@@ -30,7 +30,7 @@
     <ProductName>War Thunder FPS Booster</ProductName>
     <PublisherName>Cyber Apps</PublisherName>
     <SuiteName>Cyber Applications</SuiteName>
-    <MinimumRequiredVersion>2.31.1.37</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2.31.1.38</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.php</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>

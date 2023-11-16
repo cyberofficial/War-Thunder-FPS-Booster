@@ -461,10 +461,12 @@ Step 5: You are all set, click Launch on your Launcher and the game should boost
     End Sub
 
     Private Sub chang_log_Click(sender As Object, e As EventArgs) Handles chang_log.Click
-        Dim unused = MessageBox.Show("Changes for 2.19.0.508:
-* Removed Extra Boost. Extra boost was removed and replaced with ignore list.
-* Ignore list. With the removale of Extra boost, decided to make the program have extra boost by default. To have the same effect as extra boost being diabled, click on Ignore List, then add Common Names.
-* Fixed an issue with Ignore List showing errors with an empty list.
+        Dim unused = MessageBox.Show("Changes for 2.31.1.38:
+* ✅ Tested with EAC and still safe to use
+* Fixed an issue where restore would work for some pcs with a higher cpu core count of 8
+* Better watch dog handling
+* Updater was fixed
+* Updater will check for updates before the app starts and will let you know if there is an update or not
 * Not so red preface warning text.
 ")
     End Sub
