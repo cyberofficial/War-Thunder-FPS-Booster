@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>I:\Projects\War-Thunder-FPS-Booster\wtfpsbooster\Builds\|C:\Users\kille\Documents\GitHub\cpu-core-controller\ControlMyCores\binaries\pub\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>https://code.cyberapps.tk/desktopapps/wtfpsbooster/</InstallUrlHistory>
+    <PublishUrlHistory>X:\github\War-Thunder-FPS-Booster\wtfpsbooster\Builds\|I:\Projects\War-Thunder-FPS-Booster\wtfpsbooster\Builds\|C:\Users\kille\Documents\GitHub\cpu-core-controller\ControlMyCores\binaries\pub\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>https://webserver.skynetbot.xyz/wtfpsbooster/|https://code.cyberapps.tk/desktopapps/wtfpsbooster/</InstallUrlHistory>
     <SupportUrlHistory>https://github.com/cyberofficial/War-Thunder-FPS-Booster</SupportUrlHistory>
-    <UpdateUrlHistory>https://code.cyberapps.tk/desktopapps/wtfpsbooster/</UpdateUrlHistory>
+    <UpdateUrlHistory>https://webserver.skynetbot.xyz/wtfpsbooster/|https://code.cyberapps.tk/desktopapps/wtfpsbooster/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>

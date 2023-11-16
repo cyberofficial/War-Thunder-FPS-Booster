@@ -63,16 +63,6 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property _174861() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("174861", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property gearcog() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("gearcog", resourceCulture)
@@ -83,9 +73,19 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property GitHub_logo() As System.Drawing.Bitmap
+        Friend ReadOnly Property GH_LOGO() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("GitHub-logo", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("GH_LOGO", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property PayPal_Logo_Icon_2014_svg() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PayPal_Logo_Icon_2014.svg", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

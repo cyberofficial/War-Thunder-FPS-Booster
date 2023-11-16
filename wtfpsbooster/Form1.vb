@@ -95,6 +95,7 @@ Public Class Form1
         ' Setting Values first
         total = 0
         EAC_on = True
+        ' count how many cores the pc has
         cores = System.Environment.ProcessorCount.ToString
         n = (2 ^ cores) - 1
 
@@ -110,60 +111,77 @@ Public Class Form1
             End Try
         Next
 
+    End Sub
 
+    Private Sub BoostWorker_New_25_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BoostWorker_New_25.DoWork
+        ' Setting Values first
+        total = 0
+        EAC_on = True
 
+        ' Count how many cores the PC has and calculate the bitmask
+        Dim cores As Integer = Environment.ProcessorCount
+        Dim affinityMask As Long = 0
+        For i As Integer = 0 To cores - 1
+            affinityMask = affinityMask Or (1L << i)
+        Next
+
+        ' Prepare all applications by setting a value to the lowest first.
+        ' For every process in this point of time, we set their core count to core 0 (1st core)
+        For Each proc In Process.GetProcesses
+            Try
+                proc.ProcessorAffinity = New IntPtr(1)
+                BoostWorker_New_25.ReportProgress(1, "Preparing Stage" & vbNewLine & "Please don't exit the app.")
+            Catch ex As Exception
+                ' Handle exceptions if needed
+            End Try
+        Next
+
+        ' Additional logic for setting specific affinities goes here...
+        ' Use affinityMask as needed for setting ProcessorAffinity
     End Sub
 
     Private Sub BoostWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BoostWorker.DoWork
         total = 0
         EAC_on = True
+
+        ' Count how many cores the PC has and calculate the bitmask
+        Dim cores As Integer = Environment.ProcessorCount
+        Dim affinityMask As Long = 0
+        For i As Integer = 0 To cores - 1
+            affinityMask = affinityMask Or (1L << i)
+        Next
+
         For Each proc In Process.GetProcesses
             Try
                 proc.ProcessorAffinity = New IntPtr(1)
                 BoostWorker.ReportProgress(1, "Preparing Stage" & vbNewLine & "Please don't exit the app.")
 
             Catch ex As Exception
-
+                ' Handle exceptions if needed
             End Try
         Next
-        cores = System.Environment.ProcessorCount.ToString
-        n = (2 ^ cores) - 1
+
+        ' Additional logic for setting specific affinities based on conditions
         For Each proc In Process.GetProcesses
             Try
                 ' Exclusion List
                 BoostWorker.ReportProgress(67, "Modifying System" & vbNewLine & "Please don't exit the app.")
 
-                For Each item In My.Settings.ignore_list
-                    If proc.ToString.Contains(item) Then
-                        proc.ProcessorAffinity = New IntPtr(n - 1)
-                    End If
+                Dim processName As String = proc.ProcessName.ToLower()
+                Dim isIgnored As Boolean = My.Settings.ignore_list.Cast(Of String)().Any(Function(item) processName.Contains(item.ToLower()))
 
-                Next
-                ' Cirital Process that will need much cpu resources
-                If proc.ToString.Contains("aces") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("launcher") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("explorer") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                ' need to iinclude my program as well for watch dog
-                If proc.ToString.Contains("wtfpsbooster") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("EasyAntiCheat") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
-                End If
-                If proc.ToString.Contains("audiodg") Then
-                    proc.ProcessorAffinity = New IntPtr(n - 1)
+                If Not isIgnored Then
+                    ' Critical Process that will need much CPU resources
+                    If processName.Contains("aces") OrElse processName.Contains("launcher") OrElse processName.Contains("explorer") OrElse processName.Contains("wtfpsbooster") OrElse processName.Contains("easyanticheat") OrElse processName.Contains("audiodg") Then
+                        proc.ProcessorAffinity = New IntPtr(affinityMask)
+                    End If
                 End If
             Catch ex As Exception
+                ' Handle exceptions if needed
             End Try
         Next
-
     End Sub
+
     Private Sub BoostWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BoostWorker.ProgressChanged
         pcstatus_txt.Text = DirectCast(e.UserState, String)
 
@@ -173,15 +191,22 @@ Public Class Form1
         Enabled = True
     End Sub
     Private Sub RestoreWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles RestoreWorker.DoWork
+        Dim cores As Integer = Environment.ProcessorCount
+        Dim affinityMask As Long = 0
+        For i As Integer = 0 To cores - 1
+            affinityMask = affinityMask Or (1L << i)
+        Next
+
         For Each proc In Process.GetProcesses
             Try
-                proc.ProcessorAffinity = New IntPtr(n)
+                proc.ProcessorAffinity = New IntPtr(affinityMask)
                 RestoreWorker.ReportProgress(1, "Restoring Processes to Normal...")
             Catch ex As Exception
-
+                ' Handle exceptions if needed
             End Try
         Next
     End Sub
+
     Private Sub RestoreWorker_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles RestoreWorker.ProgressChanged
         pcstatus_txt.Text = e.UserState.ToString
     End Sub
@@ -190,14 +215,14 @@ Public Class Form1
         Enabled = True
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles RestoreBtn.Click
-        Enabled = False
+        Enabled = True
         Try
-            cores = System.Environment.ProcessorCount.ToString
-            n = (2 ^ cores) - 1
+            Dim cores As Integer = System.Environment.ProcessorCount
+            Dim n As Long = (2 ^ cores) - 1
             RestoreWorker.RunWorkerAsync()
 
         Catch ex As Exception
-
+            MessageBox.Show("Error Restoring" + vbNewLine + ex.Message)
         End Try
     End Sub
     Private Sub Rfspcl_Click(sender As Object, e As EventArgs) Handles rfspcl.Click
@@ -213,32 +238,33 @@ Public Class Form1
         Next
     End Sub
     Private Sub Fcp2_Click(sender As Object, e As EventArgs) Handles fcp2.Click
-        Dim total As Integer
-        total = 0
+        Dim totalAffinityMask As Long = 0
         For Each item In cs.CheckedItems
             Try
-                total = (2 ^ item.ToString) + total
+                totalAffinityMask = totalAffinityMask Or (1L << CInt(item))
             Catch ex As Exception
-
+                ' Handle exceptions if needed
             End Try
-
         Next
+
         For Each item In pclist.CheckedItems
             Try
                 For Each proc In Process.GetProcesses
                     Try
-                        If proc.ToString.Contains(item) Then
-                            proc.ProcessorAffinity = New IntPtr(total)
+                        If proc.ProcessName.Contains(item.ToString) Then
+                            proc.ProcessorAffinity = New IntPtr(totalAffinityMask)
                         End If
                     Catch ex As Exception
-
+                        ' Handle exceptions if needed
                     End Try
                 Next
             Catch ex As Exception
-
+                ' Handle exceptions if needed
             End Try
         Next
     End Sub
+
+
     Private Sub Tauto_Tick(sender As Object, e As EventArgs) Handles tauto.Tick
         Try
             launcher1 = Process.GetProcessesByName("launcher")
@@ -276,10 +302,14 @@ Public Class Form1
                     BoostBtn.Visible = False
                     WatchDogTxt.Text = "Watch Dog: Offline"
                     Try
-                        cores = System.Environment.ProcessorCount.ToString
-                        n = (2 ^ cores) - 1
-                        RestoreWorker.RunWorkerAsync()
+                        Dim cores As Integer = Environment.ProcessorCount
+                        Dim affinityMask As Long = 0
+                        For i As Integer = 0 To cores - 1
+                            affinityMask = affinityMask Or (1L << i)
+                        Next
+                        RestoreWorker.RunWorkerAsync(affinityMask) ' Modify the RunWorkerAsync call as needed
                     Catch ex As Exception
+                        ' Handle exceptions if needed
                     End Try
                 End If
             Else
@@ -297,6 +327,16 @@ Public Class Form1
                         End If
                         If DidWtClose = True Then
                             wtstatus.Text = "x Game was Closed, PC Restored..."
+                            Try
+                                Dim cores As Integer = Environment.ProcessorCount
+                                Dim affinityMask As Long = 0
+                                For i As Integer = 0 To cores - 1
+                                    affinityMask = affinityMask Or (1L << i)
+                                Next
+                                RestoreWorker.RunWorkerAsync(affinityMask) ' Modify the RunWorkerAsync call as needed
+                            Catch ex As Exception
+                                ' Handle exceptions if needed
+                            End Try
                             WatchDogTxt.Text = "Watch Dog: Offline"
                             wtstatus.ForeColor = Color.Yellow
                             BoostBtn.Visible = False
@@ -324,13 +364,16 @@ Public Class Form1
                 If proc.Responding = False Then
                     ' attempt to kill the process
                     proc.Kill()
+                    Dim cores As Integer = System.Environment.ProcessorCount
+                    Dim n As Long = (2 ^ cores) - 1
+                    RestoreWorker.RunWorkerAsync()
                     Dim unused = MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. Possible fix: Try increasing the watch dog timer. IF problem still exists please contact me on reddit [user/cyb3rofficial] or github [github.com/cyberofficial]. Possible fix: Try increasing the watch dog timer.")
                 End If
             End If
         Next
     End Sub
     Private Sub WatchDogWaiter_Tick(sender As Object, e As EventArgs) Handles WatchDogWaiter.Tick
-        WatchDogTxt.Text = "Watch Dog: Frozen | Waiting before panic attac: " & wdtimer_counter.ToString
+        WatchDogTxt.Text = "Watch Dog: Frozen | Waiting before panic attack: " & wdtimer_counter.ToString
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         WindowState = System.Windows.Forms.FormWindowState.Minimized

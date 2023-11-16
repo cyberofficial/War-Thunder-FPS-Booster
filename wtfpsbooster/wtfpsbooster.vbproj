@@ -11,10 +11,10 @@
     <AssemblyName>wtfpsbooster</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>I:\Projects\War-Thunder-FPS-Booster\wtfpsbooster\Builds\</PublishUrl>
+    <PublishUrl>X:\github\War-Thunder-FPS-Booster\wtfpsbooster\Builds\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -24,18 +24,18 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://code.cyberapps.tk/desktopapps/wtfpsbooster/</InstallUrl>
-    <UpdateUrl>https://code.cyberapps.tk/desktopapps/wtfpsbooster/</UpdateUrl>
+    <InstallUrl>https://webserver.skynetbot.xyz/wtfpsbooster/</InstallUrl>
+    <UpdateUrl>https://webserver.skynetbot.xyz/wtfpsbooster/</UpdateUrl>
     <SupportUrl>https://github.com/cyberofficial/War-Thunder-FPS-Booster</SupportUrl>
     <ProductName>War Thunder FPS Booster</ProductName>
     <PublisherName>Cyber Apps</PublisherName>
     <SuiteName>Cyber Applications</SuiteName>
-    <MinimumRequiredVersion>2.19.0.508</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2.31.1.37</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.php</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>508</ApplicationRevision>
-    <ApplicationVersion>2.19.0.%2a</ApplicationVersion>
+    <ApplicationRevision>38</ApplicationRevision>
+    <ApplicationVersion>2.31.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -77,16 +77,16 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D6FD965EE2D6D7190F0033C7AE4091F4F12C9248</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B49D96D8E348F8AE46E1966B1B220EE061D9058D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>wtfpsbooster_4_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>wtfpsbooster_5_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -207,10 +207,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>wtfpsbooster_4_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>wtfpsbooster_5_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -290,9 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="splash.resx">
       <DependentUpon>splash.vb</DependentUpon>
@@ -318,11 +318,15 @@
     <None Include="wtfpsbooster_2_TemporaryKey.pfx" />
     <None Include="wtfpsbooster_3_TemporaryKey.pfx" />
     <None Include="wtfpsbooster_4_TemporaryKey.pfx" />
+    <None Include="wtfpsbooster_5_TemporaryKey.pfx" />
     <None Include="wtfpsbooster_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_j81_icon.ico" />
     <None Include="Resources\gearcog.png" />
+    <None Include="Resources\GH_LOGO.png" />
+    <None Include="Resources\PayPal_Logo_Icon_2014.svg.png" />
+    <None Include="Resources\reddit-logo.png" />
     <Content Include="Table.txt" />
     <None Include="War_Thunder_Logo.png" />
   </ItemGroup>
@@ -356,7 +360,7 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.NetCore.DesktopRuntime.6.0.x86">
       <Visible>False</Visible>
-      <ProductName>.NET Desktop Runtime 6.0.6 %28x86%29</ProductName>
+      <ProductName>.NET Desktop Runtime 6.0.22 %28x86%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
