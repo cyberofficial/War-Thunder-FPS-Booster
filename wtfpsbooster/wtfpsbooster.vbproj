@@ -30,11 +30,11 @@
     <ProductName>War Thunder FPS Booster</ProductName>
     <PublisherName>Cyber Apps</PublisherName>
     <SuiteName>Cyber Applications</SuiteName>
-    <MinimumRequiredVersion>2.31.1.38</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2.31.1.39</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.php</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>39</ApplicationRevision>
+    <ApplicationRevision>40</ApplicationRevision>
     <ApplicationVersion>2.31.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -360,7 +360,7 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.NetCore.DesktopRuntime.6.0.x86">
       <Visible>False</Visible>
-      <ProductName>.NET Desktop Runtime 6.0.22 %28x86%29</ProductName>
+      <ProductName>.NET Desktop Runtime 6.0.25 %28x86%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>

@@ -1,7 +1,7 @@
 ﻿Public Class ignorelistform
     Private Sub closebtn_Click(sender As Object, e As EventArgs) Handles closebtn.Click
 
-        Me.Close()
+        Close()
         Try
             'ignorelistbox.Items.Clear()
             For Each item In My.Settings.ignore_list

@@ -4,3 +4,5 @@ wtfpsbooster/obj/*
 wtfpsbooster/obj/x86/*
 wtfpsbooster/Builds/*
 *.pfx
+.vs/*
+wtfpsbooster/.vs/*
