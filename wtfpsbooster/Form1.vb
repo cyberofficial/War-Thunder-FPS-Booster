@@ -461,9 +461,9 @@ Step 5: You are all set, click Launch on your Launcher and the game should boost
     End Sub
 
     Private Sub chang_log_Click(sender As Object, e As EventArgs) Handles chang_log.Click
-        Dim unused = MessageBox.Show("Changes for 2.31.1.38:
+        Dim unused = MessageBox.Show("Changes for 2.31.1.39:
 * ✅ Tested with EAC and still safe to use
-* Fixed an issue where restore would work for some pcs with a higher cpu core count of 8
+* Fixed an issue where restore would not work for some pcs with a higher cpu core count of 8
 * Better watch dog handling
 * Updater was fixed
 * Updater will check for updates before the app starts and will let you know if there is an update or not
