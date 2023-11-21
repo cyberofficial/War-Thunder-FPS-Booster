@@ -11,20 +11,19 @@
     <AssemblyName>wtfpsbooster</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>X:\github\War-Thunder-FPS-Booster\wtfpsbooster\Builds\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>true</UpdateRequired>
+    <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://webserver.skynetbot.xyz/wtfpsbooster/</InstallUrl>
     <UpdateUrl>https://webserver.skynetbot.xyz/wtfpsbooster/</UpdateUrl>
     <SupportUrl>https://github.com/cyberofficial/War-Thunder-FPS-Booster</SupportUrl>
     <ProductName>War Thunder FPS Booster</ProductName>
