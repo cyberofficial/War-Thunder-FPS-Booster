@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://webserver.skynetbot.xyz/wtfpsbooster/</InstallUrl>
-    <UpdateUrl>https://webserver.skynetbot.xyz/wtfpsbooster/</UpdateUrl>
+    <InstallUrl>https://sharethis.zip/github/wtfpsbooster/</InstallUrl>
+    <UpdateUrl>https://sharethis.zip/github/wtfpsbooster/</UpdateUrl>
     <SupportUrl>https://github.com/cyberofficial/War-Thunder-FPS-Booster</SupportUrl>
     <ProductName>War Thunder FPS Booster</ProductName>
     <PublisherName>Cyber Apps</PublisherName>
@@ -34,7 +34,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.php</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>40</ApplicationRevision>
+    <ApplicationRevision>41</ApplicationRevision>
     <ApplicationVersion>2.31.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -210,7 +210,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>wtfpsbooster_5_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -314,12 +315,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="wtfpsbooster_1_TemporaryKey.pfx" />
-    <None Include="wtfpsbooster_2_TemporaryKey.pfx" />
-    <None Include="wtfpsbooster_3_TemporaryKey.pfx" />
-    <None Include="wtfpsbooster_4_TemporaryKey.pfx" />
-    <None Include="wtfpsbooster_5_TemporaryKey.pfx" />
-    <None Include="wtfpsbooster_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_j81_icon.ico" />
@@ -348,6 +343,11 @@
       <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -358,9 +358,34 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.NetCore.CoreRuntime.8.0.x64">
+      <Visible>False</Visible>
+      <ProductName>.NET Runtime 8.0.7 %28x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.NetCore.CoreRuntime.8.0.x86">
+      <Visible>False</Visible>
+      <ProductName>.NET Runtime 8.0.7 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.NetCore.DesktopRuntime.6.0.x64">
+      <Visible>False</Visible>
+      <ProductName>.NET Desktop Runtime 6.0.32 %28x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.NetCore.DesktopRuntime.6.0.x86">
       <Visible>False</Visible>
-      <ProductName>.NET Desktop Runtime 6.0.25 %28x86%29</ProductName>
+      <ProductName>.NET Desktop Runtime 6.0.32 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.NetCore.DesktopRuntime.8.0.x64">
+      <Visible>False</Visible>
+      <ProductName>.NET Desktop Runtime 8.0.7 %28x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.NetCore.DesktopRuntime.8.0.x86">
+      <Visible>False</Visible>
+      <ProductName>.NET Desktop Runtime 8.0.7 %28x86%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>

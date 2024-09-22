@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>X:\github\War-Thunder-FPS-Booster\wtfpsbooster\Builds\|I:\Projects\War-Thunder-FPS-Booster\wtfpsbooster\Builds\|C:\Users\kille\Documents\GitHub\cpu-core-controller\ControlMyCores\binaries\pub\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>https://webserver.skynetbot.xyz/wtfpsbooster/|https://code.cyberapps.tk/desktopapps/wtfpsbooster/</InstallUrlHistory>
+    <InstallUrlHistory>https://sharethis.zip/github/wtfpsbooster/|https://webserver.skynetbot.xyz/wtfpsbooster/|https://code.cyberapps.tk/desktopapps/wtfpsbooster/</InstallUrlHistory>
     <SupportUrlHistory>https://github.com/cyberofficial/War-Thunder-FPS-Booster</SupportUrlHistory>
     <UpdateUrlHistory>https://webserver.skynetbot.xyz/wtfpsbooster/|https://code.cyberapps.tk/desktopapps/wtfpsbooster/</UpdateUrlHistory>
     <BootstrapperUrlHistory />

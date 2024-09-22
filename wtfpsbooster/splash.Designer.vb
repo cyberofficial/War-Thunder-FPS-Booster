@@ -30,18 +30,19 @@ Partial Class splash
         Me.exit_app = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.req_admin4_btn = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Label1.Font = New System.Drawing.Font("Detente", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(0, 399)
+        Me.Label1.Font = New System.Drawing.Font("Detente", 20.0!)
+        Me.Label1.Location = New System.Drawing.Point(0, 460)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(929, 60)
+        Me.Label1.Size = New System.Drawing.Size(930, 40)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "WT FPS Booster"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Label1.Text = "by cyberofficial"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'isadmin_box
         '
@@ -50,7 +51,7 @@ Partial Class splash
         Me.isadmin_box.Enabled = False
         Me.isadmin_box.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!)
         Me.isadmin_box.ForeColor = System.Drawing.Color.SeaShell
-        Me.isadmin_box.Location = New System.Drawing.Point(12, 345)
+        Me.isadmin_box.Location = New System.Drawing.Point(12, 343)
         Me.isadmin_box.Name = "isadmin_box"
         Me.isadmin_box.Size = New System.Drawing.Size(109, 35)
         Me.isadmin_box.TabIndex = 3
@@ -62,7 +63,7 @@ Partial Class splash
         Me.iagree_box.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.iagree_box.AutoSize = True
         Me.iagree_box.Font = New System.Drawing.Font("Microsoft Sans Serif", 25.0!)
-        Me.iagree_box.Location = New System.Drawing.Point(389, 337)
+        Me.iagree_box.Location = New System.Drawing.Point(767, 343)
         Me.iagree_box.Name = "iagree_box"
         Me.iagree_box.Size = New System.Drawing.Size(151, 43)
         Me.iagree_box.TabIndex = 3
@@ -73,7 +74,7 @@ Partial Class splash
         '
         Me.start_app.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.start_app.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!)
-        Me.start_app.Location = New System.Drawing.Point(0, 386)
+        Me.start_app.Location = New System.Drawing.Point(748, 415)
         Me.start_app.Name = "start_app"
         Me.start_app.Size = New System.Drawing.Size(170, 73)
         Me.start_app.TabIndex = 4
@@ -84,7 +85,7 @@ Partial Class splash
         '
         Me.exit_app.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.exit_app.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!)
-        Me.exit_app.Location = New System.Drawing.Point(759, 386)
+        Me.exit_app.Location = New System.Drawing.Point(12, 415)
         Me.exit_app.Name = "exit_app"
         Me.exit_app.Size = New System.Drawing.Size(170, 73)
         Me.exit_app.TabIndex = 4
@@ -93,16 +94,17 @@ Partial Class splash
         '
         'TextBox1
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.Black
+        Me.TextBox1.BackColor = System.Drawing.Color.Navy
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TextBox1.Enabled = False
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 17.0!)
+        Me.TextBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight
         Me.TextBox1.Location = New System.Drawing.Point(0, 0)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(929, 337)
+        Me.TextBox1.Size = New System.Drawing.Size(930, 337)
         Me.TextBox1.TabIndex = 5
         Me.TextBox1.Text = resources.GetString("TextBox1.Text")
         '
@@ -110,7 +112,7 @@ Partial Class splash
         '
         Me.req_admin4_btn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.req_admin4_btn.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!)
-        Me.req_admin4_btn.Location = New System.Drawing.Point(0, 386)
+        Me.req_admin4_btn.Location = New System.Drawing.Point(748, 415)
         Me.req_admin4_btn.Name = "req_admin4_btn"
         Me.req_admin4_btn.Size = New System.Drawing.Size(170, 73)
         Me.req_admin4_btn.TabIndex = 4
@@ -118,18 +120,30 @@ Partial Class splash
         Me.req_admin4_btn.UseVisualStyleBackColor = True
         Me.req_admin4_btn.Visible = False
         '
+        'Label2
+        '
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Label2.Font = New System.Drawing.Font("Detente", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(0, 400)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(930, 60)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "WT FPS Booster"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        '
         'splash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.ClientSize = New System.Drawing.Size(929, 459)
+        Me.ClientSize = New System.Drawing.Size(930, 500)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.req_admin4_btn)
         Me.Controls.Add(Me.exit_app)
         Me.Controls.Add(Me.start_app)
         Me.Controls.Add(Me.iagree_box)
         Me.Controls.Add(Me.isadmin_box)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -148,4 +162,5 @@ Partial Class splash
     Friend WithEvents exit_app As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents req_admin4_btn As Button
+    Friend WithEvents Label2 As Label
 End Class
