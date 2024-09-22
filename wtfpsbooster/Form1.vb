@@ -29,8 +29,8 @@ Public Class Form1
 
     Private Sub Form1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown, LeftPanel.MouseDown, pcstatus_txt.MouseDown, wtstatus.MouseDown, WatchDogTxt.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            Dim unused1 = ReleaseCapture()
-            Dim unused = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0)
+            ReleaseCapture()
+            SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0)
         End If
     End Sub
 
@@ -39,17 +39,17 @@ Public Class Form1
     ' ----------------------------------
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
-        Dim unused3 = splash.ShowDialog()
+        splash.ShowDialog()
 
         If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) = False Then
-            Dim unused2 = MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
+            MessageBox.Show("Tried to sneaky huh? Well that doesn't work. Please run as admin.")
             Application.Exit()
         End If
 
         Try
             ignorelistform.ignorelistbox.Items.Clear()
             For Each item In My.Settings.ignore_list
-                Dim unused4 = ignorelistform.ignorelistbox.Items.Add(item)
+                ignorelistform.ignorelistbox.Items.Add(item)
             Next
         Catch ex As Exception
 
@@ -59,7 +59,7 @@ Public Class Form1
         corecount = 0
         While corecount <= System.Environment.ProcessorCount.ToString - 1
             corecount += 1
-            Dim unused1 = cs.Items.Add(corecount - 1)
+            cs.Items.Add(corecount - 1)
         End While
         MainControlPanel.TabPages.Remove(TabPage2)
 
@@ -76,7 +76,7 @@ Public Class Form1
         ' ---------------------------------------------------------------
 
         If Application.ExecutablePath.Contains("wtfpsbooster.exe") = False Then
-            Dim unused = MessageBox.Show("It seems like the file name was changed, please rename back to: wtfpsbooster.exe" & vbNewLine & "The name is hard coded to the filename and this helps makes things easier, You can always make a shortcut though :)")
+            MessageBox.Show("It seems like the file name was changed, please rename back to: wtfpsbooster.exe" & vbNewLine & "The name is hard coded to the filename and this helps makes things easier, You can always make a shortcut though :)")
             Application.Exit()
         End If
     End Sub
@@ -257,7 +257,7 @@ Public Class Form1
         For Each proc In Process.GetProcesses
             Try
                 If Not pclist.Items.Contains(proc.ProcessName) Then
-                    Dim unused = pclist.Items.Add(proc.ProcessName)
+                    pclist.Items.Add(proc.ProcessName)
                 End If
             Catch ex As Exception
 
@@ -418,7 +418,7 @@ Public Class Form1
                     Dim cores As Integer = System.Environment.ProcessorCount
                     Dim n As Long = (2 ^ cores) - 1
                     RestoreWorker.RunWorkerAsync()
-                    Dim unused = MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. Possible fix: Try increasing the watch dog timer. IF problem still exists please contact me on reddit [user/cyb3rofficial] or github [github.com/cyberofficial]. Possible fix: Try increasing the watch dog timer.")
+                    MessageBox.Show("Seems like War Thunder had a Panic Attack, I forced it closed. Possible fix: Try increasing the watch dog timer. IF problem still exists please contact me on reddit [user/cyb3rofficial] or github [github.com/cyberofficial]. Possible fix: Try increasing the watch dog timer.")
                 End If
             End If
         Next
@@ -431,26 +431,26 @@ Public Class Form1
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        Dim unused = WatchDog_Settings.ShowDialog()
+        WatchDog_Settings.ShowDialog()
     End Sub
 
     Private Sub ignorelist_btn_Click(sender As Object, e As EventArgs) Handles ignorelist_btn.Click
-        Dim unused = ignorelistform.ShowDialog()
+        ignorelistform.ShowDialog()
         ignorelistform.ignorelistbox.Items.Clear()
         For Each item In My.Settings.ignore_list
-            Dim unused1 = ignorelistform.ignorelistbox.Items.Add(item)
+            ignorelistform.ignorelistbox.Items.Add(item)
         Next
     End Sub
 
     Private Sub start_btn_Click(sender As Object, e As EventArgs) Handles start_btn.Click
-        Dim unused = MessageBox.Show("Please make sure to close out war thunder first before closing this program. Other wise, things will be super slow and a restart of the pc will be required.")
+        MessageBox.Show("Please make sure to close out war thunder first before closing this program. Other wise, things will be super slow and a restart of the pc will be required.")
         wtstatus.Text = "Waiting for Launcher..."
         tauto.Enabled = True
         start_btn.Visible = False
     End Sub
 
     Private Sub howtouse_btn_Click(sender As Object, e As EventArgs) Handles howtouse_btn.Click
-        Dim unused = MessageBox.Show("Please note, results may vary depending on the system.
+        MessageBox.Show("Please note, results may vary depending on the system.
 How to use the program:
 Step 1: Make sure War Thunder + the Launcher are closed, if they are open, close them now and relaunch this program.
 Step 2: Launch War Thunder’s Launcher
@@ -461,25 +461,24 @@ Step 5: You are all set, click Launch on your Launcher and the game should boost
     End Sub
 
     Private Sub chang_log_Click(sender As Object, e As EventArgs) Handles chang_log.Click
-        Dim unused = MessageBox.Show("Changes for 2.31.1.39:
+        MessageBox.Show("Changes for 2.31.1.41:
 * ✅ Tested with EAC and still safe to use
-* Fixed an issue where restore would not work for some pcs with a higher cpu core count of 8
-* Better watch dog handling
-* Updater was fixed
-* Updater will check for updates before the app starts and will let you know if there is an update or not
-* Not so red preface warning text.
+* Minor UI Update
+* Update Server Location Updated
+* Updated Common Process Lists in the Ignore List Setting
+* Fixed an issue with the remove highlighted button not removing the items highlighted at the same time. (used to do it one by one from top down.)
 ")
     End Sub
 
     Private Sub githublogo_Click(sender As Object, e As EventArgs) Handles githublogo.Click
-        Dim unused = Process.Start("https://github.com/cyberofficial/War-Thunder-FPS-Booster/issues")
+        Process.Start("https://github.com/cyberofficial/War-Thunder-FPS-Booster/issues")
     End Sub
 
     Private Sub redditlogo_Click(sender As Object, e As EventArgs) Handles redditlogo.Click
-        Dim unused = Process.Start("https://www.reddit.com/user/cyb3rofficial")
+        Process.Start("https://www.reddit.com/user/cyb3rofficial")
     End Sub
 
     Private Sub paypallogo_Click(sender As Object, e As EventArgs) Handles paypallogo.Click
-        Dim unused = Process.Start("https://www.paypal.com/paypalme/cyberdrive")
+        Process.Start("https://www.paypal.com/paypalme/cyberdrive")
     End Sub
 End Class
