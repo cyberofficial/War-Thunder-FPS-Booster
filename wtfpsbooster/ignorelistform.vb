@@ -44,12 +44,22 @@
 
     Private Sub removebtn_Click(sender As Object, e As EventArgs) Handles removebtn.Click
         Try
-            ignorelistbox.Items.Remove(ignorelistbox.SelectedItem)
+            ' Store the selected items in a temporary list to avoid modifying the collection while iterating
+            Dim selectedItems As New List(Of String)
+
+            For Each item In ignorelistbox.SelectedItems
+                selectedItems.Add(item.ToString())
+            Next
+
+            ' Remove each selected item from the ignorelistbox
+            For Each item In selectedItems
+                ignorelistbox.Items.Remove(item)
+            Next
         Catch ex As Exception
-
+            MessageBox.Show("Oi, how did you break this? Please make an error report on github explaining that you broke the remove button somehow, thanks.")
         End Try
-
     End Sub
+
 
     Private Sub RefreshProc_Click(sender As Object, e As EventArgs) Handles RefreshProc.Click
         add_running_btn.Enabled = 1
