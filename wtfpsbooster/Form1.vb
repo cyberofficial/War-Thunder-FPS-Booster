@@ -461,7 +461,7 @@ Step 5: You are all set, click Launch on your Launcher and the game should boost
     End Sub
 
     Private Sub chang_log_Click(sender As Object, e As EventArgs) Handles chang_log.Click
-        MessageBox.Show("Changes for 2.31.1.41:
+        MessageBox.Show("Changes for 2.39.0.33:
 * ✅ Tested with EAC and still safe to use
 * Minor UI Update
 * Update Server Location Updated
