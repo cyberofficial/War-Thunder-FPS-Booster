@@ -78,7 +78,8 @@
     End Sub
 
     Private Sub add_common_items_Click(sender As Object, e As EventArgs) Handles add_common_items.Click
-        Dim commonnames() As String = {"ts3client_win64", "GameOverlayUI", "Steam", "SteamService", "steamwebhelper", "Dxtory", "Dxtory64", "nvcontainer", "NVDisplay.Container", "NVIDIA RTX Voice", "NVIDIA Share", "NVIDIA Web Helper", "nvsphelper64", "voicemeter", "voicemeter8", "conhost"}
+        Dim commonnames() As String = {"ts3client_win64", "GameOverlayUI", "Steam", "SteamService", "steamwebhelper", "Dxtory", "Dxtory64", "nvcontainer", "NVDisplay.Container", "NVIDIA RTX Voice", "NVIDIA Share", "NVIDIA Web Helper", "nvsphelper64", "voicemeter", "voicemeter8", "conhost", "AMDRSServ", "RadeonSoftware", "AMDRSSrcExt", "AMDRSSvc", "AMDExternalEvents", "cncmd", "amdow", "AUEP", "AMDCleanupUtility", "amdacpusrsvc", "amdfendrsr", "AMDRyzenMaster", "AMD_Chipset_Drivers", "AMDRyzenMasterService", "AMDPPM", "RyzenAdj", "RadeonSettings", "AMDRadeonSoftware", "atiesrxx", "atikmdag", "ati2evxx", "atiadlxx", "nvbackend", "nvtray", "nvstreamsvc", "NVIDIA ShadowPlay", "NVIDIA Control Panel", "nvxdsync", "nvtelemetrycontainer", "nvvsvc", "nvlddmkm", "igfxCUIService", "igfxEM", "igfxext", "IntelCpHDCPSvc", "IntelCpHeciSvc", "IntelGraphicsCommandCenter", "IntelGraphicsControlPanel", "IntelPTTEKRecertification", "LMS", "IntelDttService", "IntelNitroService", "SteamClientBootstrapper", "steamerrorreporter"}
+
         Try
             For Each item In commonnames.ToArray
                 If ignorelistbox.Items.Contains(item) = False Then
